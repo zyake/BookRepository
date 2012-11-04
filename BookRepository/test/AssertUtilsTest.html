@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>AssertUtilsTest</title>
-  <link rel="stylesheet" href="qunit-1.10.0.css">
+  <link rel="stylesheet" href="resources/qunit-1.10.0.css">
   <script src="../src/main/webapp/js/AssertUtils.js"></script>
-  <script src="qunit-1.10.0.js"></script>
+  <script src="resources/qunit-1.10.0.js"></script>
 </head>
 <body>
   <div id="qunit"></div>
@@ -16,7 +16,6 @@
   	test( "assertInstanceof01", function() {
   		AssertUtils.assertInstanceof(String, new String("test"));
   		expect(0);
-		equal(1, 2);  		
 	});
     
     /**
