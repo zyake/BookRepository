@@ -28,8 +28,13 @@ AssertUtils.assertTypeof = function(expected, actual) {
  * HTML要素が期待されたものかどうかを判定する。
  */
 AssertUtils.assertTag = function(expected, actual) {
-	var isNotMatched =  !(actual.tagName == expected)
-	if ( isNotMatched ) {
+  var isHtmlElement = actual.tagName !== undefined;
+  if ( !isHtmlElement ) {
+    throw "not html element";
+  }
+  
+	var isMatched =  actual.tagName === expected;
+	if ( !isMatched ) {
 		throw "type not matched: expected=" + expected + ", actual=" + actual.tagName;
 	}
 }

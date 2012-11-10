@@ -27,7 +27,6 @@ asyncTest("fetch01", function() {
 			equal("VALUE1", record.args[0].value);
 		},
 		errorOccured: function() {
-			start();
 			ok(false, "errorOccured");
 		}
 	};
@@ -54,12 +53,12 @@ asyncTest("fetch02", function() {
 	var listener = {
 		completeState: false,
 		loadCompleted: function() {
-			start();
 			ok(false, "loadCompleted");
 		},
-		errorOccured: function() {
-			start();
+		errorOccured: function(loader, err) {
 			ok(true, "errorOccured");
+			equal(target, loader);
+			ok(err instanceof XhrError);
 		}
 	};
 	var div = document.createElement("DIV");
@@ -71,7 +70,7 @@ asyncTest("fetch02", function() {
 	var result = target.fetch();
 	equal(true, result);
 	
-	expect(2);
+	expect(4);
 });
 
 /**
@@ -87,4 +86,38 @@ test("fetch03", function() {
 	// テスト
 	var result = target.fetch();
 	equal(false, result);
+});
+
+/**
+ * 異常系
+ * JSONからHTML要素へのマッピングに失敗する場合
+ */
+asyncTest("fetch04", function() {
+  // 事前準備
+  var mapperMock = new MapperMock();
+  mapperMock.mapToElement = function() {
+    throw new MappingError("mapping failed");
+  }
+  var target = new ElementLoader(div, mapperMock, "../resources/test.js");
+  var listener = {
+    completeState: false,
+    loadCompleted: function(loader) {
+      ok(false, "loadCompleted");
+    },
+    errorOccured: function(loader, err) {
+      ok(true, "errorOccured");
+      equal(target, loader);
+      ok(err instanceof MappingError);
+    }
+  };
+  var div = document.createElement("DIV");
+  target.successedListener.push(listener);
+  target.failedListener.push(listener);
+  
+  // テスト
+  start();
+  var result = target.fetch();
+  equal(true, result);
+  
+  expect(4);
 });
