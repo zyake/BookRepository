@@ -63,14 +63,8 @@ FormLoader.prototype.loadCompleted =  function(loader) {
 
 FormLoader.prototype.errorOccured = function(failedLoader) {
 	this.completionCount = 0;
-	this.loaders.forEach(function(loader) {
-	      var isFailedLoader = loader == failedLoader;
-        if ( isFailedLoader ) {
-            return;
-        }
-        loader.abort();
-	    }, this);
-
+	this.loaders.forEach(function(loader) { loader.abort(); });
+	
 	this.failureListener.forEach(
       function(listener) { listener.notifyError(this); }, this);
 	

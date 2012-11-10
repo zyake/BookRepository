@@ -47,6 +47,12 @@ function ElementLoader(element, mapper, url) {
 	 * リソースの取得元URL
 	 */
 	this.url = url;
+	
+	/**
+	 * XMLHttpRequestのレスポンスを受け取ったが、
+	 * 処理を中断する必要がある場合のフラグ。
+	 */
+	this.aborted = false;
 }
 
 /**
@@ -55,7 +61,11 @@ function ElementLoader(element, mapper, url) {
  * 項目のマッピングに成功した場合、successedListenerに通知する。
  * 項目のマッピングに失敗した場合、failedListenerに通知する。
  */
-ElementLoader.prototype.loadCompleted = function(evet) {
+ElementLoader.prototype.loadCompleted = function(event) {
+  if ( this.aborted ) {
+    return;
+  }
+  
   try {
     var json = eval("(" + this.xhr.responseText + ")");
     this.mapper.mapToElement(json, this.element);
@@ -84,6 +94,7 @@ ElementLoader.prototype.fetch = function() {
 		}
 	} 
 	
+	this.aborted = false;
 	this.xhr = new XMLHttpRequest();
 	this.xhr.open("GET", this.url, true);
 	var me = this;
@@ -110,4 +121,5 @@ ElementLoader.prototype.abort = function() {
 	}
 	
 	this.xhr.abort();
+	this.aborted = true;
 }
