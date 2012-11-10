@@ -987,7 +987,7 @@ QUnit.load = function() {
 			if ( filter.checked ) {
 				ol.className = ol.className + " hidepass";
 			} else {
-				tmp = " " + ol.className.replace( /[\n\t\r]/g, " " ) + " ";
+				tmp = " " + ol.className.replace( /[\n    \r]/g, " " ) + " ";
 				ol.className = tmp.replace( / hidepass /, " " );
 			}
 			if ( defined.sessionStorage ) {
@@ -1670,7 +1670,7 @@ QUnit.jsDump = (function() {
 				}
 				var chr = this.indentChar;
 				if ( this.HTML ) {
-					chr = chr.replace( /\t/g, "   " ).replace( / /g, "&nbsp;" );
+					chr = chr.replace( /    /g, "   " ).replace( / /g, "&nbsp;" );
 				}
 				return new Array( this._depth_ + (extra||0) ).join(chr);
 			},
@@ -1776,7 +1776,7 @@ QUnit.jsDump = (function() {
 				name: "name",
 				"class": "className"
 			},
-			HTML: false,//if true, entities are escaped ( <, >, \t, space and \n )
+			HTML: false,//if true, entities are escaped ( <, >,     , space and \n )
 			indentChar: "  ",//indentation unit
 			multiline: true //if true, items in a collection, are separated by a \n, else just a space.
 		};

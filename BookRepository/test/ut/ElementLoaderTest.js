@@ -17,11 +17,10 @@ MapperMock.prototype.mapToElement = function(json, addTo) {
 asyncTest("fetch01", function() {
 	// 事前準備
 	var mapperMock = new MapperMock();
-	var target = new ElementLoader(div, mapperMock);
+	var target = new ElementLoader(div, mapperMock, "../resources/test.js");
 	var listener = {
 		completeState: false,
 		loadCompleted: function() {
-			start();
 			equal(1, mapperMock.records.length);
 			var record = mapperMock.records[0];
 			equal("NAME1", record.args[0].name);
@@ -29,7 +28,7 @@ asyncTest("fetch01", function() {
 		},
 		errorOccured: function() {
 			start();
-			ok(false);
+			ok(false, "errorOccured");
 		}
 	};
 	var div = document.createElement("DIV");
@@ -37,9 +36,11 @@ asyncTest("fetch01", function() {
 	target.failedListener.push(listener);
 	
 	// テスト
-	target.fetch("resources/test.js");
+	start();
+	var result = target.fetch();
+	equal(true, result);
 	
-	expect(3);
+	expect(4);
 });
 
 /**
@@ -49,15 +50,12 @@ asyncTest("fetch01", function() {
 asyncTest("fetch02", function() {
 	// 事前準備
 	var mapperMock = new MapperMock();
-	var target = new ElementLoader(div, mapperMock);
+	var target = new ElementLoader(div, mapperMock, "resources/NO_EXISTS");
 	var listener = {
 		completeState: false,
 		loadCompleted: function() {
 			start();
-			equal(1, mapperMock.records.length);
-			var record = mapperMock.records[0];
-			equal("NAME1", record.args[0].name);
-			equal("VALUE1", record.args[0].value);
+			ok(false, "loadCompleted");
 		},
 		errorOccured: function() {
 			start();
@@ -69,7 +67,24 @@ asyncTest("fetch02", function() {
 	target.failedListener.push(listener);
 	
 	// テスト
-	target.fetch("resources/NO_EXISTS");
+	start();
+	var result = target.fetch();
+	equal(true, result);
 	
-	expect(1);
+	expect(2);
+});
+
+/**
+ * 異常系
+ * すでにリクエストが送信済みの場合
+ */
+test("fetch03", function() {
+	// 事前準備
+	var div = document.createElement("DIV");
+	var target = new ElementLoader(div, new MapperMock(), "../resources/test.js");
+	target.xhr = {state: XMLHttpRequest.SENDING};
+	
+	// テスト
+	var result = target.fetch();
+	equal(false, result);
 });

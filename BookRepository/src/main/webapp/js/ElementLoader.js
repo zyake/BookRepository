@@ -5,14 +5,20 @@
 
 /**
  * HTMLを動的に読み込むためのローダ。
+ * 
+ * @param element 読み込み先のHTML要素
+ * @param mapper JSONをHTML要素にマッピングするためのマッパ
+ * @param url JSONの取得元のURL
  */
-function ElementLoader(element, mapper) {
+function ElementLoader(element, mapper, url) {
 	AssertUtils.assertInstanceof(AbstractJsonMapper, mapper);
+	AssertUtils.assertTypeof("string", url);
 	
 	this.element = element;
 	this.mapper = mapper;
 	this.successedListener = [];
 	this.failedListener = [];
+	this.url = url;
 }
 
 /**
@@ -23,20 +29,16 @@ ElementLoader.prototype.loadCompleted = function() {
 	var json = eval("(" + this.xhr.responseText + ")");
 	this.mapper.mapToElement(json, this.element);
 	
-	for ( var key in this.successedListener ) {
-		var listener = this.successedListener[key];
-		listener.loadCompleted(this.xhr);
-	}
+	this.successedListener.forEach(
+	    function(listener) { listener.loadCompleted(this); }, this);
 }
 
 ElementLoader.prototype.errorOccured = function() {
-	for ( var key in this.failedListener ) {
-		var listener = this.failedListener[key];
-		listener.errorOccured(this.xhr);
-	}
+  this.failedListener.forEach(
+      function(listener) { listener.errorOccured(this); }, this);
 }
 
-ElementLoader.prototype.fetch = function(url) {
+ElementLoader.prototype.fetch = function() {
 	var existsXhr = this.xhr != null;
 	if ( existsXhr ) {
 		var isAvailable = 
@@ -46,9 +48,8 @@ ElementLoader.prototype.fetch = function(url) {
 		}
 	} 
 	
-	this.url = url;
 	this.xhr = new XMLHttpRequest();
-	this.xhr.open("GET", url, true);
+	this.xhr.open("GET", this.url, true);
 	var me = this;
 	this.xhr.addEventListener("load", function() {me.loadCompleted()});
 	this.xhr.addEventListener("error",function() {me.errorOccured()});
