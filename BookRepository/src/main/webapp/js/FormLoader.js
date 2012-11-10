@@ -9,7 +9,7 @@ FormLoaderState = { NoSend: 0, Sending: 1, Finished: 2, Failed: 3 };
  * Formの入力項目を読み込むためのローダ。
  */
 function FormLoader(form, loaders) {
-	AssertUtils.assertTag("FORM", form);
+	AssertUtils.assertInstanceof(HTMLFormElement, form);
 	AssertUtils.assertInstanceof(Array, loaders);
 	
 	this.state = FormLoaderState.NoSend;

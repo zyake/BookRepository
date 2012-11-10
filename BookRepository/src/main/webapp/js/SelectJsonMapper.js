@@ -17,7 +17,7 @@ SelectJsonMapper.prototype = new AbstractJsonMapper();
 
 SelectJsonMapper.prototype.mapToElement = function(json, addTo) {
 	AssertUtils.assertInstanceof(Array, json);
-	AssertUtils.assertTag("SELECT", addTo);
+	AssertUtils.Instanceof(HTMLSelectElement, addTo);
 	
 	for ( var i = 0 ; i < json.length ; i ++ ) {
 		var option = json[i];

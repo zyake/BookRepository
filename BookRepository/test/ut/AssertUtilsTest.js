@@ -87,34 +87,3 @@ test( "assertTypeof05", function() {
 	expect(0);
 });
     
-/**
- * HTML要素型に対するテスト
- */
-test("assertTag01", function() {
-	AssertUtils.assertTag("INPUT", document.createElement("INPUT"));
-	expect(0);
-});
-
-/**
- * HTML要素型に対するテスト
- */
-test("assertTag02", function() {
-  try {
-    AssertUtils.assertTag("INPUT", document.createElement("DIV"));
-  } catch(ex) {
-    ok(true);
-  }
-  expect(1);
-});
-
-/**
- * HTML要素型に対するテスト
- */
-test("assertTag03", function() {
-  try {
-    AssertUtils.assertTag("INPUT", {});
-  } catch(ex) {
-    ok(true);
-  }
-  expect(1);
-});

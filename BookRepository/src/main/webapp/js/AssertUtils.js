@@ -23,18 +23,3 @@ AssertUtils.assertTypeof = function(expected, actual) {
 		throw "type not matched: expected=" + expected + ", actual=" + typeof(actual);
 	}
 }
-
-/**
- * HTML要素が期待されたものかどうかを判定する。
- */
-AssertUtils.assertTag = function(expected, actual) {
-  var isHtmlElement = actual.tagName !== undefined;
-  if ( !isHtmlElement ) {
-    throw "not html element";
-  }
-  
-	var isMatched =  actual.tagName === expected;
-	if ( !isMatched ) {
-		throw "type not matched: expected=" + expected + ", actual=" + actual.tagName;
-	}
-}
