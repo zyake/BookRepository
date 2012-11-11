@@ -27,7 +27,7 @@ DialogContext.prototype.goNext = function(modelKey) {
 }
 
 DialogContext.prototype.goBack = function() {
-  var exitsPrevModel = this.routes.length > 1;
+  var existsPrevModel = this.routes.length > 1;
   if ( !existsPrevModel ) {
     throw new ReferenceError("prev model not found");
   }
@@ -38,9 +38,9 @@ DialogContext.prototype.goBack = function() {
     throw ReferenceError("prev model not found");
   }
 
-  delete this.routes[this.routes.length - 1];
+  this.routes.length = this.routes.length - 1;
 
   prevModel.start(this);
-  var content = = prevModel.getContent();
+  var content = prevModel.getContent();
   this.dialog.setContent(content);
 }
