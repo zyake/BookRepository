@@ -16,6 +16,7 @@ MapperMock.prototype.mapToElement = function(json, addTo) {
  */
 asyncTest("fetch01", function() {
 	// 事前準備
+  var div = document.createElement("DIV");
 	var mapperMock = new MapperMock();
 	var target = new ElementLoader(div, mapperMock, "../resources/test.js");
 	var listener = {
@@ -48,6 +49,7 @@ asyncTest("fetch01", function() {
  */
 asyncTest("fetch02", function() {
 	// 事前準備
+  var div = document.createElement("DIV");
 	var mapperMock = new MapperMock();
 	var target = new ElementLoader(div, mapperMock, "resources/NO_EXISTS");
 	var listener = {
@@ -94,6 +96,7 @@ test("fetch03", function() {
  */
 asyncTest("fetch04", function() {
   // 事前準備
+  var div = document.createElement("DIV");
   var mapperMock = new MapperMock();
   mapperMock.mapToElement = function() {
     throw new MappingError("mapping failed");
@@ -110,7 +113,6 @@ asyncTest("fetch04", function() {
       ok(err instanceof MappingError);
     }
   };
-  var div = document.createElement("DIV");
   target.successedListener.push(listener);
   target.failedListener.push(listener);
   

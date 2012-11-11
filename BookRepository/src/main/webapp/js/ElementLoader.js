@@ -13,6 +13,7 @@
  * @param url JSONの取得元のURL
  */
 function ElementLoader(element, mapper, url) {
+  AssertUtils.assertInstanceof(HTMLElement, element);
 	AssertUtils.assertInstanceof(AbstractJsonMapper, mapper);
 	AssertUtils.assertTypeof("string", url);
 	
