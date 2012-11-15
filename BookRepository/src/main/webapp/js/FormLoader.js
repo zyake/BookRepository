@@ -8,26 +8,36 @@ FormLoaderState = { NoSend: 0, Sending: 1, Finished: 2, Failed: 3 };
 /**
  * Formの入力項目を読み込むためのローダ。
  */
-function FormLoader(form, loaders) {
-	AssertUtils.assertInstanceof(HTMLFormElement, form);
-	AssertUtils.assertInstanceof(Array, loaders);
-	
-	this.state = FormLoaderState.NoSend;
-	this.form = form;
-	this.disableInputs();
-	this.loaders = loaders;
-	this.completionListener = [];
-	this.failureListener = [];
-	this.completionCount = 0;
-	var me = this;
-	this.loaders.forEach(
-	  function(loader) { 
-		  AssertUtils.assertInstanceof(ElementLoader, loader);
-		  loader.successedListener.push(me);
-			loader.failedListener.push(me);
-	});
-	
-	this.disableInputs();
+function FormLoader() {
+}
+
+FormLoader.prototype.initialize = function(form, loaders) {
+  this.state = FormLoaderState.NoSend;
+  this.form = form;
+  this.loaders = loaders;
+  this.completionListener = [];
+  this.failureListener = [];
+  this.completionCount = 0;
+
+  var me = this;
+  this.loaders.forEach(
+    function(loader) { 
+      AssertUtils.assertInstanceof(ElementLoader, loader);
+      loader.successedListener.push(me);
+      loader.failedListener.push(me);
+  });
+  
+  this.disableInputs();
+}
+
+FormLoader.create = function(form, loaders) {
+  AssertUtils.assertInstanceof(HTMLFormElement, form);
+  AssertUtils.assertInstanceof(Array, loaders);
+  
+  var formLoader = new FormLoader();
+  formLoader.initialize(form, loaders);
+    
+  return formLoader;
 }
 
 FormLoader.prototype.fetch = function() {

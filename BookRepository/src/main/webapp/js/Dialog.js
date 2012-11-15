@@ -5,10 +5,10 @@
  * imports DialogDefinition.js
  */
 
-function Dialog(elem, modelDefs) {
-  AssertUtils.assertInstanceof(HTMLElement, elem);
-  AssertUtils.assertInstanceof(Array, modelDefs);
-  
+function Dialog() {
+}
+
+Dialog.prototype.initialize = function(elem, modelDefs) {
   this.element = elem;
   this.modelMap = [];
   
@@ -40,7 +40,17 @@ function Dialog(elem, modelDefs) {
             "missing dependency: target=" + modelDef.key + ", depends=" + dependency);
       }
     } 
-  }
+  }  
+}
+
+Dialog.create = function(elem, modelDefs) {
+  AssertUtils.assertInstanceof(HTMLElement, elem);
+  AssertUtils.assertInstanceof(Array, modelDefs);
+  
+  var dialog = new Dialog();
+  dialog.initialize(elem, modelDefs);
+  
+  return dialog;
 }
 
 Dialog.prototype.show = function() {
@@ -95,10 +105,10 @@ Dialog.prototype.close = function() {
   
   for ( var key in this.modelMap ) {
     var model = this.modelMap[key];
-    model.finish(context);
+    model.finish();
   }
 }
 
 Dialog.prototype.createContext = function() {
-  return new DialogContext(this);
+  return DialogContext.create(this);
 }

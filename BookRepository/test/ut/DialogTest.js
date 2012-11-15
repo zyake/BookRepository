@@ -3,10 +3,10 @@
  */
 test("constructor01", function(){
   var defs = [
-        new ModelDefinition("KEY1", ["KEY2"], new DialogModel()),
-        new ModelDefinition("KEY2", ["KEY1"], new DialogModel())];
+        ModelDefinition.create("KEY1", ["KEY2"], DialogModel.create()),
+        ModelDefinition.create("KEY2", ["KEY1"], DialogModel.create())];
   var elem = document.createElement("DIV");
-  var target = new Dialog(elem, defs);
+  var target = Dialog.create(elem, defs);
   
   equal(defs[0].model, target.modelMap["KEY1"]);
   equal(defs[1].model, target.modelMap["KEY2"]);
@@ -18,11 +18,11 @@ test("constructor01", function(){
  */
 test("constructor02", function(){
   var defs = [
-        new ModelDefinition("KEY1", ["KEY2"], new DialogModel()),
-        new ModelDefinition("KEY3", [], new DialogModel())];
+        ModelDefinition.create("KEY1", ["KEY2"], DialogModel.create()),
+        ModelDefinition.create("KEY3", [], DialogModel.create())];
   var elem = document.createElement("DIV");
   try {
-    var target = new Dialog(elem, defs);
+    var target = Dialog.create(elem, defs);
   } catch(ex) {
     ok(true);
     return;
@@ -36,11 +36,11 @@ test("constructor02", function(){
  */
 test("constructor03", function(){
   var defs = [
-        new ModelDefinition("KEY1", [], new DialogModel()),
-        new ModelDefinition("KEY1", [], new DialogModel())];
+        ModelDefinition.create("KEY1", [], DialogModel.create()),
+        ModelDefinition.create("KEY1", [], DialogModel.create())];
   var elem = document.createElement("DIV");
   try {
-    var target = new Dialog(elem, defs);
+    var target = Dialog.create(elem, defs);
   } catch(ex) {
     ok(true);
     return;
@@ -53,11 +53,11 @@ test("constructor03", function(){
  */
 test("show01", function(){
   var defs = [
-        new ModelDefinition("KEY1", ["KEY2"], new DialogModel()),
-        new ModelDefinition("KEY2", ["KEY1"], new DialogModel())];
+        ModelDefinition.create("KEY1", ["KEY2"], DialogModel.create()),
+        ModelDefinition.create("KEY2", ["KEY1"], DialogModel.create())];
   var elem = document.createElement("DIV");
   elem.style.visibility = "hidden";
-  var target = new Dialog(elem, defs);
+  var target = Dialog.create(elem, defs);
   
   target.show();
   
@@ -70,11 +70,11 @@ test("show01", function(){
  */
 test("hide01", function(){
   var defs = [
-        new ModelDefinition("KEY1", ["KEY2"], new DialogModel()),
-        new ModelDefinition("KEY2", ["KEY1"], new DialogModel())];
+        ModelDefinition.create("KEY1", ["KEY2"], DialogModel.create()),
+        ModelDefinition.create("KEY2", ["KEY1"], DialogModel.create())];
   var elem = document.createElement("DIV");
   elem.style.visibility = "visible";
-  var target = new Dialog(elem, defs);
+  var target = Dialog.create(elem, defs);
   
   target.hide();
   
@@ -86,11 +86,11 @@ test("hide01", function(){
  */
 test("setContent01", function(){
   var defs = [
-        new ModelDefinition("KEY1", ["KEY2"], new DialogModel()),
-        new ModelDefinition("KEY2", ["KEY1"], new DialogModel())];
+        ModelDefinition.create("KEY1", ["KEY2"], DialogModel.create()),
+        ModelDefinition.create("KEY2", ["KEY1"], DialogModel.create())];
   var elem = document.createElement("SPAN");
   elem.innerHTML = "<DIV></DIV><DIV></DIV><DIV></DIV>";
-  var target = new Dialog(elem, defs);
+  var target = Dialog.create(elem, defs);
   //
   var content = document.createElement("DIV");
   content.innerHTML = "<SPAN style='color:red;'>test</SPAN>";
@@ -105,12 +105,12 @@ test("setContent01", function(){
  */
 test("start01", function(){
   var defs = [
-        new ModelDefinition("KEY1", ["KEY2"], new DialogModel()),
-        new ModelDefinition("KEY2", ["KEY1"], new DialogModel())];
+        ModelDefinition.create("KEY1", ["KEY2"], DialogModel.create()),
+        ModelDefinition.create("KEY2", ["KEY1"], DialogModel.create())];
   
   var elem = document.createElement("SPAN");
   elem.innerHTML = "<DIV></DIV><DIV></DIV><DIV></DIV>";
-  var target = new Dialog(elem, defs);
+  var target = Dialog.create(elem, defs);
   target.createContext = function() {
     return {
       goNext: function(key) {

@@ -5,16 +5,16 @@ asyncTest("fetch01", function() {
   var selectMapper = new SelectJsonMapper();
   
   var loaders = [
-          new ElementLoader(
+          ElementLoader.create(
                 document.getElementById("select1"), 
                 selectMapper,
                 "resources/SelectElements.json"),
-          new ElementLoader(
+          ElementLoader.create(
                 document.getElementById("select2"),
                 selectMapper,
                 "resources/SelectElements2.json")];
   var formElem = document.getElementById("AjaxForm1");
-  var formLoader = new FormLoader(formElem, loaders);
+  var formLoader = FormLoader.create(formElem, loaders);
   
   formLoader.completionListener.push({
     notifyCompletion: function() {
@@ -45,16 +45,16 @@ asyncTest("fetch02", function() {
   var selectMapper = new SelectJsonMapper();
   
   var loaders = [
-          new ElementLoader(
+          ElementLoader.create(
                 document.getElementById("select21"), 
                 selectMapper,
                 "resources/FAILURE.json"),
-          new ElementLoader(
+          ElementLoader.create(
                 document.getElementById("select22"),
                 selectMapper,
                 "resources/SelectElements.json")];
   var formElem = document.getElementById("AjaxForm2");
-  var formLoader = new FormLoader(formElem, loaders);
+  var formLoader = FormLoader.create(formElem, loaders);
   
   formLoader.failureListener.push({
     notifyError: function() {

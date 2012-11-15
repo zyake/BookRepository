@@ -18,7 +18,7 @@ asyncTest("fetch01", function() {
 	// 事前準備
   var div = document.createElement("DIV");
 	var mapperMock = new MapperMock();
-	var target = new ElementLoader(div, mapperMock, "../resources/test.js");
+	var target = ElementLoader.create(div, mapperMock, "../resources/test.js");
 	var listener = {
 		completeState: false,
 		loadCompleted: function() {
@@ -51,7 +51,7 @@ asyncTest("fetch02", function() {
 	// 事前準備
   var div = document.createElement("DIV");
 	var mapperMock = new MapperMock();
-	var target = new ElementLoader(div, mapperMock, "resources/NO_EXISTS");
+	var target = ElementLoader.create(div, mapperMock, "resources/NO_EXISTS");
 	var listener = {
 		completeState: false,
 		loadCompleted: function() {
@@ -82,7 +82,7 @@ asyncTest("fetch02", function() {
 test("fetch03", function() {
 	// 事前準備
 	var div = document.createElement("DIV");
-	var target = new ElementLoader(div, new MapperMock(), "../resources/test.js");
+	var target = ElementLoader.create(div, new MapperMock(), "../resources/test.js");
 	target.xhr = {state: XMLHttpRequest.SENDING};
 	
 	// テスト
@@ -101,7 +101,7 @@ asyncTest("fetch04", function() {
   mapperMock.mapToElement = function() {
     throw new MappingError("mapping failed");
   }
-  var target = new ElementLoader(div, mapperMock, "../resources/test.js");
+  var target = ElementLoader.create(div, mapperMock, "../resources/test.js");
   var listener = {
     completeState: false,
     loadCompleted: function(loader) {

@@ -3,8 +3,8 @@
  */
 test("goNext01", function(){
   var defs = [
-        new ModelDefinition("KEY1", ["KEY2"], new DialogModel()),
-        new ModelDefinition("KEY2", ["KEY1"], new DialogModel())];
+        ModelDefinition.create("KEY1", ["KEY2"], DialogModel.create()),
+        ModelDefinition.create("KEY2", ["KEY1"], DialogModel.create())];
   var capturedContext;
   defs[1].model.start = function(context) {
     capturedContext = context;
@@ -18,7 +18,7 @@ test("goNext01", function(){
     return elem;
   }
   var elem = document.createElement("DIV");
-  var dialog = new Dialog(elem, defs);
+  var dialog =  Dialog.create(elem, defs);
   dialog.start("KEY2");
   
   equal(1, capturedContext.routes.length);
@@ -31,8 +31,8 @@ test("goNext01", function(){
  */
 test("goBack01", function(){
   var defs = [
-        new ModelDefinition("KEY1", ["KEY2"], new DialogModel()),
-        new ModelDefinition("KEY2", ["KEY1"], new DialogModel())];
+        ModelDefinition.create("KEY1", ["KEY2"], DialogModel.create()),
+        ModelDefinition.create("KEY2", ["KEY1"], DialogModel.create())];
   var capturedContext;
   defs[1].model.start = function(context) {
     capturedContext = context;
@@ -46,7 +46,7 @@ test("goBack01", function(){
     return elem;
   }
   var elem = document.createElement("DIV");
-  var dialog = new Dialog(elem, defs);
+  var dialog = Dialog.create(elem, defs);
   dialog.start("KEY2");
   capturedContext.routes.push("KEY1");
   capturedContext.goBack();

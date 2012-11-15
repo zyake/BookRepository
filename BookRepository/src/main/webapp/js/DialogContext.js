@@ -4,12 +4,22 @@
  * imports DialogModel.js
  */
 
-function DialogContext(dialog) {
-  AssertUtils.assertInstanceof(Dialog, dialog);
-  
+function DialogContext() {
+}
+
+DialogContext.prototype.initialize = function(dialog) {
   this.dialog = dialog;
   this.routes = [];
   this.attributeMap = [];
+}
+
+DialogContext.create = function(dialog) {
+  AssertUtils.assertInstanceof(Dialog, dialog);
+  
+  var context = new DialogContext();
+  context.initialize(dialog);
+  
+  return context;
 }
 
 DialogContext.prototype.goNext = function(modelKey) {

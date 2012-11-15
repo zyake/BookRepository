@@ -3,20 +3,26 @@
  * imports DialogContext.js
  */
 
-function DialogModel(depends) {
-  this.depends = depends; 
+function DialogModel() {
+}
+
+DialogModel.create = function() {
+  var dialogModel = new DialogModel();
+  
+  return dialogModel;
 }
 
 DialogModel.prototype.getContent = function() {
 }
 
 DialogModel.prototype.init = function(context) {
+  this.context = context;
 }
 
 DialogModel.prototype.start = function(context) {
 }
 
-DialogModel.prototype.finish = function(context) {
+DialogModel.prototype.finish = function() {
 }
 
 

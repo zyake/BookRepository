@@ -7,53 +7,61 @@
 
 /**
  * HTMLを動的に読み込むためのローダ。
- * 
- * @param element 読み込み先のHTML要素
- * @param mapper JSONをHTML要素にマッピングするためのマッパ
- * @param url JSONの取得元のURL
  */
-function ElementLoader(element, mapper, url) {
+function ElementLoader() {
+}
+
+ElementLoader.prototype.initialize = function(element, mapper, url) { 
+  
+  /**
+   * リソースのマッピング先のHTML要素
+   */
+  this.element = element;
+  
+  /**
+   * リソースをHTML要素へマッピングするAbstractMapperの実装。
+   */
+  this.mapper = mapper;
+  
+  /**
+   * リソースの読み込みからHTML要素へのマッピングまで
+   * 成功したことを通知するリスナ関数。
+   * 
+   * @param src 要素を読み込んだElementLoaderのインスタンス
+   */
+  this.successedListener = [];
+  
+  /**
+   * リソースの読み込み、もしくはHTML要素へのマッピングが
+   * 失敗したことを通知するリスナ関数。
+   * 
+   * @param src 要素を読み込んだElementLoaderのインスタンス
+   * @param reason 失敗した原因を通知するErrorオブジェクト
+   */
+  this.failedListener = [];
+  
+  /**
+   * リソースの取得元URL
+   */
+  this.url = url;
+  
+  /**
+   * XMLHttpRequestのレスポンスを受け取ったが、
+   * 処理を中断する必要がある場合のフラグ。
+   */
+  this.aborted = false;  
+    
+}
+
+ElementLoader.create = function(element, mapper, url) {
   AssertUtils.assertInstanceof(HTMLElement, element);
-	AssertUtils.assertInstanceof(AbstractJsonMapper, mapper);
-	AssertUtils.assertTypeof("string", url);
-	
-	/**
-	 * リソースのマッピング先のHTML要素
-	 */
-	this.element = element;
-	
-	/**
-	 * リソースをHTML要素へマッピングするAbstractMapperの実装。
-	 */
-	this.mapper = mapper;
-	
-	/**
-	 * リソースの読み込みからHTML要素へのマッピングまで
-	 * 成功したことを通知するリスナ関数。
-	 * 
-	 * @param src 要素を読み込んだElementLoaderのインスタンス
-	 */
-	this.successedListener = [];
-	
-	/**
-	 * リソースの読み込み、もしくはHTML要素へのマッピングが
-	 * 失敗したことを通知するリスナ関数。
-	 * 
-	 * @param src 要素を読み込んだElementLoaderのインスタンス
-	 * @param reason 失敗した原因を通知するErrorオブジェクト
-	 */
-	this.failedListener = [];
-	
-	/**
-	 * リソースの取得元URL
-	 */
-	this.url = url;
-	
-	/**
-	 * XMLHttpRequestのレスポンスを受け取ったが、
-	 * 処理を中断する必要がある場合のフラグ。
-	 */
-	this.aborted = false;
+  AssertUtils.assertInstanceof(AbstractJsonMapper, mapper);
+  AssertUtils.assertTypeof("string", url);
+  
+  var elementLoader = new ElementLoader();
+  elementLoader.initialize(element, mapper, url);
+
+  return elementLoader;
 }
 
 /**

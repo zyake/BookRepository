@@ -1,3 +1,5 @@
 function XhrError(args) {
-  this.prototype = new Error(args);
+  Error.apply(this, [args]);
 }
+
+XhrError.prototype = new Error();

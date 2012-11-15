@@ -1,3 +1,6 @@
 function MappingError(args) {
-  this.prototype = new Error(args);
+  Error.apply(this, [args]);
+  
 }
+
+MappingError.prototype = new Error();
