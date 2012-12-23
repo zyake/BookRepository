@@ -48,9 +48,6 @@ $(function(){
 				 newTBodies += newTBody;
 			 });
 			 this.tbody.innerHTML = newTBodies;
-		 },
-		 showModel: function() {
-
 		 }
 	});
 
