@@ -149,5 +149,5 @@ $(function(){
 		 modelDialog.render(foundBooks[0].toJSON());
 	 }
 
-	 pagerView.fetch(0);
+	 pagerView.fetch(1);
 });
