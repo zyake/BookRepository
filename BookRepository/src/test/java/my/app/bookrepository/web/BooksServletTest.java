@@ -11,15 +11,18 @@ import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import my.app.bookrepository.UT;
 import my.app.bookrepository.domain.Book;
 import my.app.bookrepository.domain.BookService;
 
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
+@Category(UT.class)
 public class BooksServletTest {
 
 	@Test
-	public void testDoGet_normal() throws Exception {
+	public void testDoGet_normal_returnJSON() throws Exception {
 		// init
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		stub(request.getParameter("size")).toReturn("3");
