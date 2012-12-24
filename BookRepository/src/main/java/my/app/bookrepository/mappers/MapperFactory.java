@@ -3,7 +3,6 @@ package my.app.bookrepository.mappers;
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.sql.DataSource;
 
@@ -27,15 +26,23 @@ public class MapperFactory {
 		Environment env = new Environment("bookRepository", new ManagedTransactionFactory(), dataSource);
 		Configuration config = new Configuration(env);
 		config.addMapper(BookMapper.class);
+		config.addMapper(PageMapper.class);
 		this.sessionFactory = new SqlSessionFactoryBuilder().build(config);
 	}
 
 	@Produces
-	@RequestScoped
 	public  BookMapper createBookMapper() {
 		SqlSession session = sessionFactory.openSession();
-		BookMapper bookMapper = session.getMapper(BookMapper.class);
+		BookMapper mapper = session.getMapper(BookMapper.class);
 
-		return bookMapper;
+		return mapper;
+	}
+
+	@Produces
+	public PageMapper createPageMapper() {
+		SqlSession session = sessionFactory.openSession();
+		PageMapper mapper = session.getMapper(PageMapper.class);
+
+		return mapper;
 	}
 }

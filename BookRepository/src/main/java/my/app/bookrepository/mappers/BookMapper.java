@@ -14,7 +14,4 @@ public interface BookMapper {
 
 	@Insert("INSERT INTO Books(Name, Url, Publisher, Price, ParchaseDate, ReadingState, Comment, Rank, Genre) VALUES(#{name}, #{url}, #{publisher}, #{price}, #{parchaseDate}, #{readingState}, #{comment}, #{rank}, #{genre})")
 	void insertBook(Book newBook);
-
-	@Select("SELECT COUNT(no) FROM Books")
-	int countBooks();
 }

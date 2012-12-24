@@ -95,9 +95,9 @@ $(function(){
 			 var serverItemSize = this.model.get("serverItemSize");
 			 this.model.fetch({
 				 data: {
-				 serverItemSize: serverItemSize,
-				 currentIndex: index,
-				 maxPerPageSize: maxPerPageSize
+					 serverItemSize: serverItemSize,
+					 currentIndex: index,
+					 maxPerPageSize: maxPerPageSize
 			 	},
 				url: "pager"
 			});
