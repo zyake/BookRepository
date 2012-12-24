@@ -2,9 +2,9 @@ package my.app.bookrepository.mappers;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.mapping.Environment;
@@ -17,7 +17,7 @@ import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
 @ManagedBean
 public class MapperFactory {
 
-	@Inject
+	@Resource(lookup="jdbc/DataSource")
 	DataSource dataSource;
 
 	SqlSessionFactory sessionFactory;
