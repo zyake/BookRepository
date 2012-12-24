@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import my.app.bookrepository.UT;
-import my.app.bookrepository.mappers.PageMapper;
+import my.app.bookrepository.orm.mappers.PageMapper;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;

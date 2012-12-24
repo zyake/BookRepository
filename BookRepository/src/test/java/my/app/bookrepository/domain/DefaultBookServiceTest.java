@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import my.app.bookrepository.UT;
-import my.app.bookrepository.mappers.BookMapper;
+import my.app.bookrepository.orm.mappers.BookMapper;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
