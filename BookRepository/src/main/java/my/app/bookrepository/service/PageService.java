@@ -1,4 +1,6 @@
-package my.app.bookrepository.domain;
+package my.app.bookrepository.service;
+
+import my.app.bookrepository.domain.Page;
 
 public interface PageService {
 

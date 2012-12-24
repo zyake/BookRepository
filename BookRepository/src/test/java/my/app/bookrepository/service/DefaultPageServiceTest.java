@@ -1,10 +1,12 @@
-package my.app.bookrepository.domain;
+package my.app.bookrepository.service;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import my.app.bookrepository.UT;
+import my.app.bookrepository.domain.Page;
 import my.app.bookrepository.mappers.PageMapper;
+import my.app.bookrepository.service.DefaultPageService;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;

@@ -1,6 +1,8 @@
-package my.app.bookrepository.domain;
+package my.app.bookrepository.service;
 
 import java.util.List;
+
+import my.app.bookrepository.domain.Book;
 
 
 public interface BookService {

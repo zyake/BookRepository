@@ -1,4 +1,4 @@
-package my.app.bookrepository.web;
+package my.app.bookrepository.servlet;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import my.app.bookrepository.UT;
 import my.app.bookrepository.domain.Book;
-import my.app.bookrepository.domain.BookService;
+import my.app.bookrepository.service.BookService;
+import my.app.bookrepository.servlet.BooksServlet;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;

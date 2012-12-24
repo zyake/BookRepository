@@ -1,4 +1,4 @@
-package my.app.bookrepository.web;
+package my.app.bookrepository.servlet;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import my.app.bookrepository.domain.Page;
-import my.app.bookrepository.domain.PageService;
+import my.app.bookrepository.service.PageService;
 
 import org.codehaus.jackson.map.ObjectMapper;
 

@@ -1,4 +1,4 @@
-package my.app.bookrepository.domain;
+package my.app.bookrepository.service;
 
 import java.util.List;
 
@@ -7,6 +7,9 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
+import my.app.bookrepository.domain.Book;
+import my.app.bookrepository.domain.Page;
+import my.app.bookrepository.domain.PageRange;
 import my.app.bookrepository.mappers.BookMapper;
 
 @Stateless

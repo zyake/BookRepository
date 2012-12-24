@@ -1,4 +1,4 @@
-package my.app.bookrepository.domain;
+package my.app.bookrepository.service;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import my.app.bookrepository.UT;
+import my.app.bookrepository.domain.Book;
 import my.app.bookrepository.mappers.BookMapper;
 
 import org.junit.Test;

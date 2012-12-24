@@ -1,4 +1,4 @@
-package my.app.bookrepository.web;
+package my.app.bookrepository.servlet;
 
 import java.text.SimpleDateFormat;
 
