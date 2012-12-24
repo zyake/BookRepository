@@ -15,6 +15,7 @@ import my.app.bookrepository.UT;
 import my.app.bookrepository.domain.Book;
 import my.app.bookrepository.domain.BookService;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -41,6 +42,7 @@ public class BooksServletTest {
 
 		BooksServlet target = new BooksServlet();
 		target.service = bookService;
+		target.mapper = new ObjectMapper();
 
 		// test
 		target.doGet(request, response);

@@ -3,6 +3,7 @@ package my.app.bookrepository.web;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,8 @@ public class PagerServlet extends HttpServlet {
 	@EJB
 	PageService service;
 
-	ObjectMapper mapper = new ObjectMapper();
+	@Inject
+	ObjectMapper mapper;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +31,6 @@ public class PagerServlet extends HttpServlet {
 		int maxPerPageSize = Integer.parseInt(req.getParameter("maxPerPageSize"));
 
 		Page page = service.evaluate(serverItemSize, currentIndex, maxPerPageSize);
-
 		mapper.writeValue(resp.getWriter(), page);
 	}
 }
