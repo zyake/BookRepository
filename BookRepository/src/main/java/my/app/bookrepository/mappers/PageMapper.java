@@ -1,4 +1,4 @@
-package my.app.bookrepository.orm.mappers;
+package my.app.bookrepository.mappers;
 
 import org.apache.ibatis.annotations.Select;
 

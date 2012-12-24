@@ -5,7 +5,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
-import my.app.bookrepository.orm.mappers.PageMapper;
+import my.app.bookrepository.mappers.PageMapper;
 
 @Stateless
 public class DefaultPageService implements PageService {

@@ -16,8 +16,7 @@ import my.app.bookrepository.domain.BookService;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-
-@WebServlet("/books")
+@WebServlet("/api/books")
 public class BooksServlet extends HttpServlet {
 
 	@EJB
@@ -28,8 +27,18 @@ public class BooksServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int size = Integer.parseInt(req.getParameter("size"));
-		int index = Integer.parseInt(req.getParameter("index"));
+		String sizeText = req.getParameter("size");
+		if ( sizeText == null ) {
+			throw new ServletException("size was not specified");
+		}
+		int size = Integer.parseInt(sizeText);
+
+		String indexText = req.getParameter("index");
+		if ( indexText == null ) {
+			throw new ServletException("index was not specified");
+		}
+		int index = Integer.parseInt(indexText);
+
 		List<Book> books = service.listBooks(index, size);
 
 		mapper.writeValue(resp.getWriter(), books);

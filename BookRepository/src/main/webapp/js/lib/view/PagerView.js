@@ -42,7 +42,7 @@
 		 var maxPerPageSize = this.model.get("maxPerPageSize");
 		 this.collection.fetch({
 			 data: { size: maxPerPageSize, index: index },
-			 url: "books"
+			 url: "api/books"
 		});
 
 		 var serverItemSize = this.model.get("serverItemSize");
@@ -52,7 +52,7 @@
 				 currentIndex: index,
 				 maxPerPageSize: maxPerPageSize
 		 	},
-			url: "pager"
+			url: "api/pager"
 		});
 	 }
  });

@@ -7,7 +7,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
-import my.app.bookrepository.orm.mappers.BookMapper;
+import my.app.bookrepository.mappers.BookMapper;
 
 @Stateless
 public class DefaultBookService implements BookService {

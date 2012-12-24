@@ -1,13 +1,10 @@
-package my.app.bookrepository.orm;
+package my.app.bookrepository.mappers;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.enterprise.inject.Produces;
 import javax.sql.DataSource;
-
-import my.app.bookrepository.orm.mappers.BookMapper;
-import my.app.bookrepository.orm.mappers.PageMapper;
 
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
@@ -29,7 +26,8 @@ public class MapperFactory {
 		Environment env = new Environment("bookRepository", new ManagedTransactionFactory(), dataSource);
 		Configuration config = new Configuration(env);
 		config.setCacheEnabled(false);
-		config.addMappers("my.app.bookrepository.orm.mappers");
+		config.addMapper(BookMapper.class);
+		config.addMapper(PageMapper.class);
 		this.sessionFactory = new SqlSessionFactoryBuilder().build(config);
 	}
 

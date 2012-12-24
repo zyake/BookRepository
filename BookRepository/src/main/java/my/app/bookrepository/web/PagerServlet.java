@@ -15,7 +15,7 @@ import my.app.bookrepository.domain.PageService;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-@WebServlet("/pager")
+@WebServlet("/api/pager")
 public class PagerServlet extends HttpServlet {
 
 	@EJB
@@ -26,9 +26,23 @@ public class PagerServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int serverItemSize = Integer.parseInt(req.getParameter("serverItemSize"));
-		int currentIndex = Integer.parseInt(req.getParameter("currentIndex"));
-		int maxPerPageSize = Integer.parseInt(req.getParameter("maxPerPageSize"));
+		String serverItemSizeText = req.getParameter("serverItemSize");
+		if ( serverItemSizeText == null ) {
+			throw new ServletException("serverItemSize was not specified");
+		}
+		int serverItemSize = Integer.parseInt(serverItemSizeText);
+
+		String currentIndexText = req.getParameter("currentIndex");
+		if ( currentIndexText == null ) {
+			throw new ServletException("currentIndex was not specified");
+		}
+		int currentIndex = Integer.parseInt(currentIndexText);
+
+		String maxPerPageSizeText = req.getParameter("maxPerPageSize");
+		if ( maxPerPageSizeText == null ) {
+			throw new ServletException("maxPerPageSize was not specified");
+		}
+		int maxPerPageSize = Integer.parseInt(maxPerPageSizeText);
 
 		Page page = service.evaluate(serverItemSize, currentIndex, maxPerPageSize);
 		mapper.writeValue(resp.getWriter(), page);

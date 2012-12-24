@@ -27,5 +27,10 @@ $(function() {
 		 modelDialog.render(foundBooks[0].toJSON());
 	 }
 
+	 var errorView = new ErrorView({
+		 el: document.getElementById("error"),
+		 models: [pagerView.model, books]
+	 });
+
 	 pagerView.fetch(1);
 });

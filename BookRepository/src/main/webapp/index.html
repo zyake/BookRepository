@@ -41,6 +41,7 @@
     <script src="js/lib/view/CollectionTable.js"></script>
     <script src="js/lib/view/ModelDialog.js"></script>
     <script src="js/lib/view/PagerView.js"></script>
+    <script src="js/lib/view/ErrorView.js"></script>
 	<!-- page -->
     <script src="js/page/index.js"></script>
  </head>
@@ -54,6 +55,7 @@
   </ul>
  </nav>
  <section style="position:absolute; left: 15%; width: 80%;">
+  <div id="error" style="color: red; border: 5px solid red; background-color:black; display: none"><p>error occured</p></div>
   <div id="pager"><button class="goBack">&lt;</button><span class="pagerState">1/20</span><button class="goNext">&gt;</button></div>
   <table id="collectionTable" style="border: 1px solid gray; border-collapse: collapse; width: 100%;">
    <thead>
