@@ -27,20 +27,28 @@ public class BooksServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		validateRequest(req);
+
 		String sizeText = req.getParameter("size");
-		if ( sizeText == null ) {
-			throw new ServletException("size was not specified");
-		}
 		int size = Integer.parseInt(sizeText);
 
 		String indexText = req.getParameter("index");
-		if ( indexText == null ) {
-			throw new ServletException("index was not specified");
-		}
 		int index = Integer.parseInt(indexText);
 
 		List<Book> books = service.listBooks(index, size);
 
 		mapper.writeValue(resp.getWriter(), books);
+	}
+
+	protected void validateRequest(HttpServletRequest request) throws ServletException {
+		String sizeText = request.getParameter("size");
+		if ( sizeText == null ) {
+			throw new ServletException("size was not specified");
+		}
+
+		String indexText = request.getParameter("index");
+		if ( indexText == null ) {
+			throw new ServletException("index was not specified");
+		}
 	}
 }

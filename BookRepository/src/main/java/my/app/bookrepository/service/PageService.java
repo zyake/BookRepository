@@ -1,6 +1,6 @@
 package my.app.bookrepository.service;
 
-import my.app.bookrepository.domain.Page;
+import my.app.bookrepository.domain.Pager;
 
 public interface PageService {
 
@@ -22,5 +22,5 @@ public interface PageService {
 	 * @param maxPerPageSize
 	 * @return
 	 */
-	Page evaluate(int serverItemSize, int currentIndex, int maxPerPageSize);
+	Pager evaluate(int serverItemSize, int currentIndex, int maxPerPageSize);
 }

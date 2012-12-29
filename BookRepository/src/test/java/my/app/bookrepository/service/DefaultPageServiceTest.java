@@ -4,7 +4,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import my.app.bookrepository.UT;
-import my.app.bookrepository.domain.Page;
+import my.app.bookrepository.domain.Pager;
 import my.app.bookrepository.mappers.PageMapper;
 import my.app.bookrepository.service.DefaultPageService;
 
@@ -24,10 +24,10 @@ public class DefaultPageServiceTest {
 		target.mapper = mapper;
 
 		// test
-		Page page = target.evaluate(10, 1, 2);
+		Pager page = target.evaluate(10, 1, 2);
 
 		// assert
-		assertThat(page.toString(), is(new Page(1, 2, 10).toString()));
+		assertThat(page.toString(), is(new Pager(1, 2, 10).toString()));
 	}
 
 	@Test
@@ -40,9 +40,9 @@ public class DefaultPageServiceTest {
 		target.mapper = mapper;
 
 		// test
-		Page page = target.evaluate(10, 2, 1);
+		Pager page = target.evaluate(10, 2, 1);
 
 		// assert
-		assertThat(page.toString(), is(new Page(1, 1, 1).toString()));
+		assertThat(page.toString(), is(new Pager(1, 1, 1).toString()));
 	}
 }

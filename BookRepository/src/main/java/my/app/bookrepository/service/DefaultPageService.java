@@ -5,7 +5,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
-import my.app.bookrepository.domain.Page;
+import my.app.bookrepository.domain.Pager;
 import my.app.bookrepository.mappers.PageMapper;
 
 @Stateless
@@ -15,14 +15,14 @@ public class DefaultPageService implements PageService {
 	PageMapper mapper;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Page evaluate(int serverItemSize, int currentIndex, int maxPerPageSize) {
-		Page currentPage = new Page(currentIndex, maxPerPageSize, serverItemSize);
+	public Pager evaluate(int serverItemSize, int currentIndex, int maxPerPageSize) {
+		Pager currentPage = new Pager(currentIndex, maxPerPageSize, serverItemSize);
 		int newServerItemSize = mapper.countItems();
 		if ( !currentPage.requireIndexChange(newServerItemSize) ) {
-			return new Page(currentIndex, maxPerPageSize, newServerItemSize);
+			return new Pager(currentIndex, maxPerPageSize, newServerItemSize);
 		}
 
-		int maxIndex = Page.getAvailableMaxIndex(maxPerPageSize, newServerItemSize);
-		return new Page(maxIndex, maxPerPageSize, newServerItemSize);
+		int maxIndex = Pager.getAvailableMaxIndex(maxPerPageSize, newServerItemSize);
+		return new Pager(maxIndex, maxPerPageSize, newServerItemSize);
 	}
 }

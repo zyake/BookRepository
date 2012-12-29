@@ -1,6 +1,6 @@
 package my.app.bookrepository;
 
-import my.app.bookrepository.domain.PageTest;
+import my.app.bookrepository.domain.PagerTest;
 import my.app.bookrepository.service.DefaultBookServiceTest;
 import my.app.bookrepository.service.DefaultPageServiceTest;
 import my.app.bookrepository.servlet.BooksServletTest;
@@ -14,6 +14,6 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Categories.class)
 @IncludeCategory(UT.class)
 @ExcludeCategory(IT.class)
-@SuiteClasses({PageTest.class, BooksServletTest.class, DefaultBookServiceTest.class,  DefaultPageServiceTest.class})
+@SuiteClasses({PagerTest.class, BooksServletTest.class, DefaultBookServiceTest.class,  DefaultPageServiceTest.class})
 public class UTTestSuites {
 }

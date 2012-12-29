@@ -1,11 +1,12 @@
 package my.app.bookrepository.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,20 +18,20 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.exceptions.PersistenceException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 @WebFilter("/api/*")
 public class ExceptionHandler implements Filter {
 
-	private ObjectMapper mapper = new ObjectMapper();
+	private static final Logger LOG = Logger.getLogger(ExceptionHandler.class.getName());
 
 	private static final Map<Class<? extends Exception>, String> MESSAGE_MAP;
+
+	ObjectMapper mapper = new ObjectMapper();
 
 	static {
 		Map<Class<? extends Exception>, String> messageMap = new HashMap<Class<? extends Exception>, String>();
 		messageMap.put(SQLException.class, "database access error");
-		messageMap.put(PersistenceException.class, "database access error");
 		MESSAGE_MAP = Collections.unmodifiableMap(messageMap);
 	}
 
@@ -41,33 +42,52 @@ public class ExceptionHandler implements Filter {
 		try {
 			chain.doFilter(request, response);
 		} catch(Exception ex) {
-			HttpServletResponse httpResponse = (HttpServletResponse) response;
-			httpResponse.reset();
-			httpResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-
-			PrintWriter writer = httpResponse.getWriter();
-			HttpServletRequest httpRequest = (HttpServletRequest) request;
-			String message = ex.getMessage();
-
-			boolean useDefaultMessage = message == null && MESSAGE_MAP.containsKey(ex.getClass());
-			if ( useDefaultMessage ) {
-				message = MESSAGE_MAP.get(ex.getClass());
+			if ( LOG.isLoggable(Level.SEVERE) ) {
+				LOG.severe("request handling failed: " + ex);
 			}
 
-			boolean messageNotFound = message == null;
-			if ( messageNotFound ) {
-				message = "internal server error";
-			}
+			configResponse(response);
 
-			ErrorResponse errorResponse = new ErrorResponse(httpRequest.getRequestURI(), message);
-			mapper.writeValue(writer, errorResponse);
+			ErrorResponse errorResponse = createErrorResponse(request, ex);
+			mapper.writeValue(response.getWriter(), errorResponse);
 		}
+	}
+
+	protected ErrorResponse createErrorResponse(ServletRequest request, Exception ex) {
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		String message = getErrorMessage(ex);
+		ErrorResponse errorResponse = new ErrorResponse(httpRequest.getRequestURI(), message);
+
+		return errorResponse;
+	}
+
+	protected HttpServletResponse configResponse(ServletResponse response) {
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		httpResponse.reset();
+		httpResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
+		return httpResponse;
+	}
+
+	protected String getErrorMessage(Exception ex) {
+		String message = ex.getMessage();
+
+		boolean useSpecificMessage = message == null && MESSAGE_MAP.containsKey(ex.getClass());
+		if ( useSpecificMessage ) {
+			message = MESSAGE_MAP.get(ex.getClass());
+		}
+
+		boolean useDefaultMessage = message == null;
+		if ( useDefaultMessage ) {
+			message = "internal server error";
+		}
+		return message;
 	}
 
 	public void destroy() {
 	}
 
-	private static class ErrorResponse {
+	class ErrorResponse {
 
 		private String action;
 

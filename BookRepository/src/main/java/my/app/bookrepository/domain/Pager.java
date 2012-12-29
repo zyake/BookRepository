@@ -1,6 +1,6 @@
 package my.app.bookrepository.domain;
 
-public class Page {
+public class Pager {
 
 	private int serverItemSize;
 
@@ -8,11 +8,11 @@ public class Page {
 
 	private int maxPerPageSize;
 
-	public Page(int currentIndex, int maxPerPageSize) {
+	public Pager(int currentIndex, int maxPerPageSize) {
 		this(currentIndex, maxPerPageSize, 0);
 	}
 
-	public Page(int currentIndex, int maxPerPageSize, int serverItemSize) {
+	public Pager(int currentIndex, int maxPerPageSize, int serverItemSize) {
 		this.serverItemSize = serverItemSize;
 		this.currentIndex = currentIndex;
 		this.maxPerPageSize = maxPerPageSize;
