@@ -16,43 +16,20 @@
 	 },
 
 	 goBack: function() {
-		 var currentIndex = this.model.get("currentIndex");
-		 var isStartIndex = currentIndex == 1;
-		 if ( isStartIndex ) {
+		 if ( !this.model.canGoBack() ) {
 			 return;
 		 }
 
-		 var prevIndex = currentIndex - 1;
-		 this.fetch(prevIndex);
+		 var prevIndex = this.model.get("currentIndex") - 1;
+		 this.model.refresh(prevIndex);
 	 },
 
 	 goNext: function() {
-		 var currentIndex = this.model.get("currentIndex");
-		 var amountPageSize = this.model.getAmountPageSize();
-		 var reachToEnd = currentIndex == amountPageSize;
-		 if ( reachToEnd ) {
+		 if ( !this.model.canGoNext() ) {
 			 return;
 		 }
 
-		 var nextIndex = currentIndex + 1;
-		 this.fetch(nextIndex);
-	 },
-
-	 fetch: function(index) {
-		 var maxPerPageSize = this.model.get("maxPerPageSize");
-		 this.collection.fetch({
-			 data: { size: maxPerPageSize, index: index },
-			 url: "api/books"
-		});
-
-		 var serverItemSize = this.model.get("serverItemSize");
-		 this.model.fetch({
-			 data: {
-				 serverItemSize: serverItemSize,
-				 currentIndex: index,
-				 maxPerPageSize: maxPerPageSize
-		 	},
-			url: "api/pager"
-		});
+		 var nextIndex = this.model.get("currentIndex") + 1;
+		 this.model.refresh(nextIndex);
 	 }
  });

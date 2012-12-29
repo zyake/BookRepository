@@ -12,9 +12,14 @@ $(function() {
 		 el: document.getElementById("collectionTable")
 	 });
 
+	 var pagerModel = new PagerModel({
+		 pagerUrl: "/bookrepository/api/pager",
+		 collectionUrl: "/bookrepository/api/books",
+		 collection: books
+	 });
+
 	 var pagerView = new PagerView({
-		 model: new PagerModel(),
-		 collection: books,
+		 model: pagerModel,
 		 el: document.getElementById("pager")
 	});
 
@@ -32,5 +37,5 @@ $(function() {
 		 models: [pagerView.model, books]
 	 });
 
-	 pagerView.fetch(1);
+	 pagerModel.refresh(1);
 });
