@@ -37,5 +37,5 @@ $(function() {
 		 models: [pagerView.model, books]
 	 });
 
-	 pagerModel.refresh(1);
+	 pagerModel.refresh();
 });

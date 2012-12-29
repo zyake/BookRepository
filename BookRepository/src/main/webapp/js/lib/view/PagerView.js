@@ -1,4 +1,5 @@
  var PagerView = Backbone.View.extend({
+
 	 events: {
 		 "click .goBack": "goBack",
 		 "click .goNext": "goNext"
@@ -21,7 +22,8 @@
 		 }
 
 		 var prevIndex = this.model.get("currentIndex") - 1;
-		 this.model.refresh(prevIndex);
+		 this.model.set("currentIndex", prevIndex);
+		 this.model.refresh();
 	 },
 
 	 goNext: function() {
@@ -30,6 +32,7 @@
 		 }
 
 		 var nextIndex = this.model.get("currentIndex") + 1;
-		 this.model.refresh(nextIndex);
+		 this.model.set("currentIndex", nextIndex);
+		 this.model.refresh();
 	 }
  });

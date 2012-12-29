@@ -4,13 +4,7 @@
 
 FAILED="FALSE"
 
-$PHANTOMJS_HOME/bin/phantomjs $PHANTOMJS_HOME/examples/run-qunit.js AssertUtilsTest.html
-if [ $? -ne 0 ]
-then
-    FAILED="TRUE"
-fi;
-
-$PHANTOMJS_HOME/bin/phantomjs $PHANTOMJS_HOME/examples/run-qunit.js ElementLoaderTest.html
+$PHANTOMJS_HOME/bin/phantomjs $PHANTOMJS_HOME/examples/run-qunit.js PagerModelTest.html
 if [ $? -ne 0 ]
 then
     FAILED="TRUE"

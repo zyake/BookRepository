@@ -1,9 +1,11 @@
 var PagerModel = Backbone.Model.extend({
+
 	initialize: function(arg) {
 		this.collection = arg.collection;
 		this.collectionUrl = arg.collectionUrl;
 		this.pagerUrl = arg.pagerUrl;
 	 },
+
 	defaults: function() {
 		return {
 			serverItemSize: 0,
@@ -11,16 +13,19 @@ var PagerModel = Backbone.Model.extend({
 			currentIndex: 1
 		}
 	},
+
 	getAmountPageSize: function() {
 		 var amountPageSize =  Math.ceil(this.get("serverItemSize") / this.get("maxPerPageSize"));
 		 return amountPageSize;
 	},
+
 	canGoBack: function() {
 		 var currentIndex = this.get("currentIndex");
 		 var canGoBack = currentIndex > 1;
 
 		 return canGoBack;
 	},
+
 	canGoNext: function() {
 		 var currentIndex = this.get("currentIndex");
 		 var amountPageSize = this.getAmountPageSize();
@@ -28,10 +33,12 @@ var PagerModel = Backbone.Model.extend({
 
 		 return !reachToEnd;
 	},
-	refresh: function(index) {
+
+	refresh: function() {
+		var currentIndex = this.get("currentIndex");
 		 var maxPerPageSize = this.get("maxPerPageSize");
 		 this.collection.fetch({
-			 data: { size: maxPerPageSize, index: index },
+			 data: { size: maxPerPageSize, index: currentIndex },
 			 url: this.collectionUrl
 		});
 
@@ -39,7 +46,7 @@ var PagerModel = Backbone.Model.extend({
 		 this.fetch({
 			 data: {
 				 serverItemSize: serverItemSize,
-				 currentIndex: index,
+				 currentIndex: currentIndex,
 				 maxPerPageSize: maxPerPageSize
 		 	},
 			url: this.pagerUrl

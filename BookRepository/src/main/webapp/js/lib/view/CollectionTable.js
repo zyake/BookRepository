@@ -1,4 +1,5 @@
 var CollectionTable = Backbone.View.extend({
+
 	initialize: function(arg) {
 		 this.listenTo(this.collection, "sync", this.render);
 		 this.rowTemplate = _.template(arg.rowTemplate);

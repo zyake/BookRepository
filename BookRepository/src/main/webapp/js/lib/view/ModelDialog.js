@@ -1,4 +1,5 @@
  var ModelDialog = Backbone.View.extend({
+
 	 initialize:  function(arg) {
 		this.dialogTemplate = _.template(arg.dialogTemplate);
 	 },
