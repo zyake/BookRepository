@@ -47,7 +47,21 @@
     	<artifactId>jackson-mapper-asl</artifactId>
     	<version>1.9.11</version>
     </dependency>
+    <dependency>
+        <groupId>my</groupId>
+        <artifactId>lib</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
+  <reporting>
+      <plugins>
+          <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>emma-maven-plugin</artifactId>
+              <version>1.0-alpha-3</version>
+          </plugin>
+      </plugins>
+  </reporting>
   <build>
     <finalName>bookrepository</finalName>
   </build>

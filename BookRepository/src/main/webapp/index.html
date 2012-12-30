@@ -16,6 +16,7 @@
 
      .dialog {
       position: absolute;
+      background-color: white;
 	  margin-left: 20%;
 	  margin-right: 20%;
 	  width: 60%;
@@ -38,10 +39,12 @@
     <!-- hand made lib  -->
     <script src="js/lib/model/BookCollection.js"></script>
     <script src="js/lib/model/PagerModel.js"></script>
+     <script src="js/lib/model/FormModel.js"></script>
     <script src="js/lib/view/CollectionTable.js"></script>
     <script src="js/lib/view/ModelDialog.js"></script>
     <script src="js/lib/view/PagerView.js"></script>
     <script src="js/lib/view/ErrorView.js"></script>
+    <script src="js/lib/view/FormView.js"></script>
 	<!-- page -->
     <script src="js/page/index.js"></script>
  </head>
@@ -51,27 +54,29 @@
  </header>
  <nav style="position: absolute; width: 15%;">
   <ul>
-   <li><a href="register_book.html">Register Book</a></li>
+   <li><a href="javascript:showRegisterDialog()">Register Book</a></li>
   </ul>
  </nav>
  <section style="position:absolute; left: 15%; width: 80%;">
-  <div id="error" style="color: red; border: 5px solid red; background-color:black; display: none"><p>error occured</p></div>
+  <div id="error" style="color: red; border: 5px solid red; background-color:black; display: none"><p>error occured. please reload application.</p></div>
   <div id="pager"><button class="goBack">&lt;</button><span class="pagerState">1/20</span><button class="goNext">&gt;</button></div>
   <table id="collectionTable" style="border: 1px solid gray; border-collapse: collapse; width: 100%;">
    <thead>
     <tr>
-     <th>No</th><th>Name</th><th>Publisher</th><th>Parchase Date</th><th>Genre</th><th>Rank</th><th>Reading State</th>
+     <th>No</th><th>Name</th><th>Publisher</th><th>Purchase Date</th><th>Genre</th><th>Rank</th><th>Reading State</th>
     </tr>
    </thead>
    <tbody class="body">
    </tbody>
   </table>
  </section>
+
  <script type="text/template" id="rowTemplate">
   <tr>
-   <td><%=no%></td><td><a style="cursor: pointer; color: red; text-decoration: underline;" onclick="showModel(<%=no%>)"><%=name%></a></td><td><%=publisher%></td><td><%=parchaseDate%></td><td><%=genre%></td><td><%=rank%></td><td><%=readingState%></td>
+   <td><%=no%></td><td><a style="cursor: pointer; color: red; text-decoration: underline;" onclick="showModel(<%=no%>)"><%=name%></a></td><td><%=publisher%></td><td><%=purchaseDate%></td><td><%=genre%></td><td><%=rank%></td><td><%=readingState%>%</td>
   </tr>
  </script>
+
  <script id="bookTemplate">
   <div style="position: absolute; margin-left:10%; margin-right: 10%; width: 80%; background-color: white; border: 2px solid  black;">
     <h2 style="text-align: center;">Book Info</h2>
@@ -89,10 +94,10 @@
      <td>Publisher:</td><td><%=publisher%></td>
     </tr>
     <tr>
-     <td>Parcharse Date:</td><td><%=parchaseDate%></td>
+     <td>Purcharse Date:</td><td><%=purchaseDate%></td>
     </tr>
     <tr>
-     <td>Reading State:</td><td><%=readingState%></td>
+     <td>Reading State:</td><td><%=readingState%>%</td>
     </tr>
     <tr>
      <td>Comment:</td><td><textarea readonly="readonly" rows="10" cols="30"><%=comment%></textarea></td>
@@ -108,5 +113,51 @@
    <button class="close">close</button>
    </div>
  </script>
+ <div id="registerDialog" style="display: none">
+    <div class="cover"></div>
+    <div class="dialog">
+        <h2>Register Book</h2>
+        <form id="registerForm">
+         <table>
+             <thead>
+             <tr>
+                 <th width="150"/><th width="400"/>
+             </tr>
+             </thead>
+             <tbody>
+             <tr>
+                 <td>Book Name:</td><td><input name="name" type="text" required="required"/></td>
+             </tr>
+             <tr>
+                 <td>Book Url:</td><td><input name="url" type="text"/></td>
+             </tr>
+             <tr>
+                 <td>Publisher:</td><td><select name="publishers"/></td>
+             </tr>
+             <tr>
+                 <td>Parcharse Date:</td><td><input name="parcharseDate" type="Date"/></td>
+             </tr>
+             <tr>
+                 <td>Price:</td><td><input name="price" type="number" min="0"/></td>
+             </tr>
+             <tr>
+                 <td>Reading State:</td><td><input name="readingStates" type="number" min="0"/>%</td>
+             </tr>
+             <tr>
+                 <td>Comment:</td><td><textarea name="comment" rows="10" cols="30"></textarea></td>
+             </tr>
+             <tr>
+                 <td>Rank:</td><td><select name="ranks"/></td>
+             </tr>
+             <tr>
+                 <td>Genre:</td><td><select name="genres"/></td>
+             </tr>
+             </tbody>
+         </table>
+         <input type="submit" value="register"/>
+        </form>
+         <input class="close" type="button" value="close"/>
+       </div>
+ </div>
 </body>
 </html>

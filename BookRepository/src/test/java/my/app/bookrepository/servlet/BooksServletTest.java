@@ -50,7 +50,7 @@ public class BooksServletTest {
 
 		// assert
 		assertThat(outputStream.toString(),
-				is("[{\"no\":0,\"name\":null,\"url\":null,\"publisher\":null,\"price\":0,\"parchaseDate\":null,\"readingState\":null,\"comment\":null,\"rank\":null,\"genre\":null}," +
-				"{\"no\":0,\"name\":null,\"url\":null,\"publisher\":null,\"price\":0,\"parchaseDate\":null,\"readingState\":null,\"comment\":null,\"rank\":null,\"genre\":null}]"));
+				is("[{\"no\":0,\"name\":null,\"url\":null,\"publisher\":null,\"price\":0,\"purchaseDate\":null,\"readingState\":0,\"comment\":null,\"rank\":null,\"genre\":null}," +
+				"{\"no\":0,\"name\":null,\"url\":null,\"publisher\":null,\"price\":0,\"purchaseDate\":null,\"readingState\":0,\"comment\":null,\"rank\":null,\"genre\":null}]"));
 	}
 }

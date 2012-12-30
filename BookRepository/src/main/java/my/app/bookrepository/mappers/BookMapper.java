@@ -9,9 +9,21 @@ import org.apache.ibatis.annotations.Select;
 
 public interface BookMapper {
 
-	@Select("SELECT no, name, url, publisher, price, parchasedate, readingstate, comment, rank, genre FROM Books WHERE no >= #{0} AND #{1} >= no")
+	@Select("SELECT no, name, url, publisher, price, purchasedate, readingstate, comment, rank, genre FROM Books WHERE no >= #{0} AND #{1} >= no")
 	List<Book> listBooks(int from, int to);
 
-	@Insert("INSERT INTO Books(Name, Url, Publisher, Price, ParchaseDate, ReadingState, Comment, Rank, Genre) VALUES(#{name}, #{url}, #{publisher}, #{price}, #{parchaseDate}, #{readingState}, #{comment}, #{rank}, #{genre})")
+	@Insert("INSERT INTO Books(Name, Url, Publisher, Price, PurchaseDate, ReadingState, Comment, Rank, Genre) VALUES(#{name}, #{url}, #{publisher}, #{price}, #{purchaseDate}, #{readingState}, #{comment}, #{rank}, #{genre})")
 	void insertBook(Book newBook);
+
+    @Select("SELECT COUNT(no) FROM Books")
+    int countBooks();
+
+    @Select("SELECT Name FROM Publishers ORDER BY Name")
+    List<String> listPublishers();
+
+    @Select("SELECT Rank FROM Ranks ORDER BY Rank")
+    List<String> listRanks();
+
+    @Select("SELECT Genre FROM Genres ORDER BY Genre")
+    List<String> listGenres();
 }

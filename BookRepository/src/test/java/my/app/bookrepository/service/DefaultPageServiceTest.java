@@ -4,9 +4,8 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import my.app.bookrepository.UT;
+import my.app.bookrepository.domain.BookRepository;
 import my.app.bookrepository.domain.Pager;
-import my.app.bookrepository.mappers.PageMapper;
-import my.app.bookrepository.service.DefaultPageService;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -17,11 +16,11 @@ public class DefaultPageServiceTest {
 	@Test
 	public void testEvaluate_normal_sameIndex() {
 		// init
-		PageMapper mapper = mock(PageMapper.class);
-		stub(mapper.countItems()).toReturn(10);
+        BookRepository repository = mock(BookRepository.class);
+		stub(repository.countBooks()).toReturn(10);
 
 		DefaultPageService target = new DefaultPageService();
-		target.mapper = mapper;
+		target.repository = repository;
 
 		// test
 		Pager page = target.evaluate(10, 1, 2);
@@ -33,11 +32,11 @@ public class DefaultPageServiceTest {
 	@Test
 	public void testEvaluate_normal_changeIndex() {
 		// init
-		PageMapper mapper = mock(PageMapper.class);
-		stub(mapper.countItems()).toReturn(1);
+        BookRepository repository = mock(BookRepository.class);
+		stub(repository.countBooks()).toReturn(1);
 
 		DefaultPageService target = new DefaultPageService();
-		target.mapper = mapper;
+		target.repository = repository;
 
 		// test
 		Pager page = target.evaluate(10, 2, 1);

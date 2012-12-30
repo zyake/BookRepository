@@ -1,6 +1,7 @@
 package my.app.bookrepository.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -29,7 +30,7 @@ public class BooksServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		validateRequest(req);
 
-		String sizeText = req.getParameter("size");
+        String sizeText = req.getParameter("size");
 		int size = Integer.parseInt(sizeText);
 
 		String indexText = req.getParameter("index");

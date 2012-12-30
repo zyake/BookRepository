@@ -1,3 +1,16 @@
+/**
+ * <p>
+ * BackboneのコレクションオブジェクトをTableElement上に
+ * 表示するためのビューの実装。
+ * </p>
+ *
+ * コンストラクタ
+ * <ul>
+ *  <li>collection: 描画対象のBackboneのコレクションオブジェクト。</li>
+ *  <li>rowTemplate: 行の描画に使用するunderscoreのTemplateオブジェクト。</li>
+ *  <li>el: HTMLTableEment</li>
+ * </ul>
+ */
 var CollectionTable = Backbone.View.extend({
 
 	initialize: function(arg) {

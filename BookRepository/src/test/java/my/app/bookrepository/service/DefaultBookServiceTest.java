@@ -9,6 +9,7 @@ import java.util.List;
 
 import my.app.bookrepository.UT;
 import my.app.bookrepository.domain.Book;
+import my.app.bookrepository.domain.BookRepository;
 import my.app.bookrepository.mappers.BookMapper;
 
 import org.junit.Test;
@@ -21,14 +22,14 @@ public class DefaultBookServiceTest {
 	@Test
 	public void testListBooks_normal_returnValue() {
 		// init
-		BookMapper mapper = mock(BookMapper.class);
-		stub(mapper.listBooks(1, 2)).toReturn(Arrays.asList(
+        BookRepository repository = mock(BookRepository.class);
+		stub(repository.listBooks(1, 2)).toReturn(Arrays.asList(
 				new Book(),
 				new Book()
 		));
 
 		DefaultBookService target = new DefaultBookService();
-		target.mapper = mapper;
+		target.repository = repository;
 
 		// test
 		List<Book> books = target.listBooks(1, 2);

@@ -4,7 +4,7 @@ var BookModel = Backbone.Model.extend({
 			no: null,
 			name: "-",
 			publisher: "-",
-			parchaseDate: "-",
+			purchaseDate: "-",
 			genre: "-",
 			rank: "-",
 			readingState: "-",

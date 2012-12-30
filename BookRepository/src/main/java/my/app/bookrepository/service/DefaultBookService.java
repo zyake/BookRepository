@@ -8,6 +8,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 import my.app.bookrepository.domain.Book;
+import my.app.bookrepository.domain.BookRepository;
 import my.app.bookrepository.domain.Pager;
 import my.app.bookrepository.domain.PageRange;
 import my.app.bookrepository.mappers.BookMapper;
@@ -16,15 +17,19 @@ import my.app.bookrepository.mappers.BookMapper;
 public class DefaultBookService implements BookService {
 
 	@Inject
-	BookMapper mapper;
+    BookRepository repository;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Book> listBooks(int index, int size) {
-		Pager page = new Pager(index, size);
-		PageRange range = page.getRange();
-		List<Book> books = mapper.listBooks(range.getFrom(), range.getTo());
+        try {
+            Pager page = new Pager(index, size);
+            PageRange range = page.getRange();
+            List<Book> books = repository.listBooks(range.getFrom(), range.getTo());
 
-		return books;
+            return books;
+        } finally {
+            repository.close();
+        }
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

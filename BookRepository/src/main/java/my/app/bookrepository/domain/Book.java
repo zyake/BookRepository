@@ -14,9 +14,9 @@ public class Book {
 
 	private int price;
 
-	private Date parchaseDate;
+	private Date purchaseDate;
 
-	private String readingState;
+	private int readingState;
 
 	private String comment;
 
@@ -64,19 +64,19 @@ public class Book {
 		this.price = price;
 	}
 
-	public Date getParchaseDate() {
-		return parchaseDate;
+	public Date getPurchaseDate() {
+		return purchaseDate;
 	}
 
-	public void setParchaseDate(Date parchaseDate) {
-		this.parchaseDate = parchaseDate;
+	public void setPurchaseDate(Date purchaseDate) {
+		this.purchaseDate = purchaseDate;
 	}
 
-	public String getReadingState() {
+	public int getReadingState() {
 		return readingState;
 	}
 
-	public void setReadingState(String readingState) {
+	public void setReadingState(int readingState) {
 		this.readingState = readingState;
 	}
 
@@ -108,7 +108,7 @@ public class Book {
 	public String toString() {
 		return String.format(
 				"no=%s, name=%s, url=%s, genre=%s, parcharseDate=%s, price=%d, publisher=%s, rank=%s, readingState=%s",
-				no, name, url, genre, parchaseDate, price, publisher, rank, readingState
+				no, name, url, genre, purchaseDate, price, publisher, rank, readingState
 		);
 	}
 }
