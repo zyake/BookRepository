@@ -1,8 +1,10 @@
 var FormView = Backbone.View.extend({
 
    initialize: function(arg) {
+        var me = this;
         this.model = arg.model;
         this.listenTo(this.model, "sync", this.renderSelections);
+        this.listenTo(this.model, "submit.success", function(){ me.enableInput(); })
 
         this.selections = arg.el.querySelectorAll("select");
         this.nameToSelectionMap = {};
@@ -10,14 +12,14 @@ var FormView = Backbone.View.extend({
             var selection = this.selections[i];
             this.nameToSelectionMap[selection.name] = selection;
         }
-        this.submitButton = arg.el.querySelector("input[type=submit]");
+        this.submitButton = arg.el.querySelector(".submit");
         this.disableInput();
 
-        var me = this;
-        this.submitButton.addEventListener("onclick", function(event) {
-            event.preventDefault();
-            me.disableInput();
-            me.model.send(me.el);
+        this.submitButton.addEventListener("click", function(event) {
+           var sendSuccessed = me.model.send(me.el);
+           if ( sendSuccessed ) {
+                me.disableInput();
+            }
         });
    },
 
@@ -51,5 +53,6 @@ var FormView = Backbone.View.extend({
             var option = new Option(options[i]);
             selection.appendChild(option);
         }
+        selection.selectedIndex = 0;
    }
 });

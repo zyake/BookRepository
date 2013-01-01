@@ -8,6 +8,7 @@ import javax.enterprise.inject.Produces;
 import javax.sql.DataSource;
 
 import my.app.bookrepository.domain.BookRepository;
+import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;

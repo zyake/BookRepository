@@ -12,7 +12,7 @@ public interface BookMapper {
 	@Select("SELECT no, name, url, publisher, price, purchasedate, readingstate, comment, rank, genre FROM Books WHERE no >= #{0} AND #{1} >= no")
 	List<Book> listBooks(int from, int to);
 
-	@Insert("INSERT INTO Books(Name, Url, Publisher, Price, PurchaseDate, ReadingState, Comment, Rank, Genre) VALUES(#{name}, #{url}, #{publisher}, #{price}, #{purchaseDate}, #{readingState}, #{comment}, #{rank}, #{genre})")
+	@Insert("INSERT INTO Books(Name, Url, Publisher, Price, PurchaseDate, ReadingState, Comment, Rank, Genre) VALUES(#{name}, #{url}, #{publishers}, #{price}, #{purchaseDate}, #{readingStates}, #{comment}, #{ranks}, #{genres})")
 	void insertBook(Book newBook);
 
     @Select("SELECT COUNT(no) FROM Books")

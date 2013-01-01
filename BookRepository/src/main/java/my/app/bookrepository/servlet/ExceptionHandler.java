@@ -30,7 +30,7 @@ public class ExceptionHandler implements Filter {
 	ObjectMapper mapper = new ObjectMapper();
 
 	static {
-		Map<Class<? extends Exception>, String> messageMap = new HashMap<Class<? extends Exception>, String>();
+		Map<Class<? extends Exception>, String> messageMap = new HashMap<>();
 		messageMap.put(SQLException.class, "database access error");
 		MESSAGE_MAP = Collections.unmodifiableMap(messageMap);
 	}

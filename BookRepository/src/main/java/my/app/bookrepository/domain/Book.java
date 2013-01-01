@@ -10,19 +10,19 @@ public class Book {
 
 	private String url;
 
-	private String publisher;
+	private String publishers;
 
 	private int price;
 
 	private Date purchaseDate;
 
-	private int readingState;
+	private int readingStates;
 
 	private String comment;
 
-	private String rank;
+	private String ranks;
 
-	private String genre;
+	private String genres;
 
 	public int getNo() {
 		return no;
@@ -49,11 +49,11 @@ public class Book {
 	}
 
 	public String getPublisher() {
-		return publisher;
+		return publishers;
 	}
 
 	public void setPublisher(String publisher) {
-		this.publisher = publisher;
+		this.publishers = publisher;
 	}
 
 	public int getPrice() {
@@ -73,11 +73,11 @@ public class Book {
 	}
 
 	public int getReadingState() {
-		return readingState;
+		return readingStates;
 	}
 
 	public void setReadingState(int readingState) {
-		this.readingState = readingState;
+		this.readingStates = readingState;
 	}
 
 	public String getComment() {
@@ -89,26 +89,26 @@ public class Book {
 	}
 
 	public String getRank() {
-		return rank;
+		return ranks;
 	}
 
 	public void setRank(String rank) {
-		this.rank = rank;
+		this.ranks = rank;
 	}
 
 	public String getGenre() {
-		return genre;
+		return genres;
 	}
 
 	public void setGenre(String genre) {
-		this.genre = genre;
+		this.genres = genre;
 	}
 
 	@Override
 	public String toString() {
 		return String.format(
 				"no=%s, name=%s, url=%s, genre=%s, parcharseDate=%s, price=%d, publisher=%s, rank=%s, readingState=%s",
-				no, name, url, genre, purchaseDate, price, publisher, rank, readingState
+				no, name, url, genres, purchaseDate, price, publishers, ranks, readingStates
 		);
 	}
 }

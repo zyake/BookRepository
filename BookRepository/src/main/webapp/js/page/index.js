@@ -42,10 +42,9 @@ $(function() {
       });
 
     var registerDialog = document.getElementById("registerDialog");
-    var closeButton = registerDialog.querySelector(".close");
-    closeButton.addEventListener("onclick", function() {
+    window.closeRegisterDialog = function() {
         registerDialog.style.display = "none";
-    });
+    }
     window.showRegisterDialog = function() {
         registerDialog.style.display = "block";
         formModel.fetch({ url: "/bookrepository/api/register" });
@@ -53,7 +52,7 @@ $(function() {
 
 	 var errorView = new ErrorView({
 		 el: document.getElementById("error"),
-		 models: [pagerView.model, books]
+		 models: [pagerView.model, books, formModel]
 	 });
 
 	 pagerModel.refresh();

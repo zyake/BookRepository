@@ -2,6 +2,7 @@ package my.app.bookrepository.service;
 
 import my.app.bookrepository.domain.BookRepository;
 import my.app.bookrepository.domain.Selection;
+import my.app.bookrepository.domain.Book;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -33,6 +34,15 @@ public class DefaultRegisterServie implements RegisterService {
             );
 
             return selections;
+        } finally {
+            repository.close();
+        }
+    }
+
+    @Override
+    public void registerBook(Book newBook) {
+        try {
+            repository.insertBook(newBook);
         } finally {
             repository.close();
         }

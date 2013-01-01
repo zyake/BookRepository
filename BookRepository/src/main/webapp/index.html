@@ -94,7 +94,7 @@
      <td>Publisher:</td><td><%=publisher%></td>
     </tr>
     <tr>
-     <td>Purcharse Date:</td><td><%=purchaseDate%></td>
+     <td>Purchase Date:</td><td><%=purchaseDate%></td>
     </tr>
     <tr>
      <td>Reading State:</td><td><%=readingState%>%</td>
@@ -129,34 +129,35 @@
                  <td>Book Name:</td><td><input name="name" type="text" required="required"/></td>
              </tr>
              <tr>
-                 <td>Book Url:</td><td><input name="url" type="text"/></td>
+                 <td>Book Url:</td><td><input name="url" type="text" required="required" value=""/></td>
              </tr>
              <tr>
-                 <td>Publisher:</td><td><select name="publishers"/></td>
+                 <td>Publisher:</td><td><select name="publishers" required="required"/></td>
              </tr>
              <tr>
-                 <td>Parcharse Date:</td><td><input name="parcharseDate" type="Date"/></td>
+                 <td>Purchase Date:</td><td><input name="purchaseDate" type="Date" required="required"/></td>
              </tr>
              <tr>
-                 <td>Price:</td><td><input name="price" type="number" min="0"/></td>
+                 <td>Price:</td><td><input name="price" type="number" min="0" value="0" required="required"/></td>
              </tr>
              <tr>
-                 <td>Reading State:</td><td><input name="readingStates" type="number" min="0"/>%</td>
+                 <td>Reading State:</td><td><input name="readingStates" type="number" min="0" value="0" required="required"/>%</td>
              </tr>
              <tr>
-                 <td>Comment:</td><td><textarea name="comment" rows="10" cols="30"></textarea></td>
+                 <td>Comment:</td><td><textarea name="comment" rows="10" cols="30" required="required"></textarea></td>
              </tr>
              <tr>
-                 <td>Rank:</td><td><select name="ranks"/></td>
+                 <td>Rank:</td><td><select name="ranks" required="required"/></td>
              </tr>
              <tr>
-                 <td>Genre:</td><td><select name="genres"/></td>
+                 <td>Genre:</td><td><select name="genres" required="required"/></td>
              </tr>
              </tbody>
          </table>
-         <input type="submit" value="register"/>
+         <input class="submit" type="button" value="register"/>
         </form>
-         <input class="close" type="button" value="close"/>
+         <input class="close" type="button" value="close" onclick="closeRegisterDialog()"/>
+         <div class="success" style="font-weight: bold; color: blue;"></div>
        </div>
  </div>
 </body>

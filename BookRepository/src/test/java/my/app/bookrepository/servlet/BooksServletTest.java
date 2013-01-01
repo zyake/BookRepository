@@ -1,24 +1,20 @@
 package my.app.bookrepository.servlet;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintWriter;
-import java.util.Arrays;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import my.app.bookrepository.UT;
 import my.app.bookrepository.domain.Book;
 import my.app.bookrepository.service.BookService;
-import my.app.bookrepository.servlet.BooksServlet;
-
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
 
 @Category(UT.class)
 public class BooksServletTest {
@@ -36,21 +32,17 @@ public class BooksServletTest {
 		stub(response.getWriter()).toReturn(writer);
 
 		BookService bookService = mock(BookService.class);
-		stub(bookService.listBooks(3, 3)).toReturn(Arrays.asList(
-				new Book(),
-				new Book()
-		));
+        List<Book> books = Arrays.asList(new Book(), new Book());
+		stub(bookService.listBooks(3, 3)).toReturn(books);
 
 		BooksServlet target = new BooksServlet();
 		target.service = bookService;
-		target.mapper = new ObjectMapper();
+		target.mapper = mock(ObjectMapper.class);
 
 		// test
 		target.doGet(request, response);
 
 		// assert
-		assertThat(outputStream.toString(),
-				is("[{\"no\":0,\"name\":null,\"url\":null,\"publisher\":null,\"price\":0,\"purchaseDate\":null,\"readingState\":0,\"comment\":null,\"rank\":null,\"genre\":null}," +
-				"{\"no\":0,\"name\":null,\"url\":null,\"publisher\":null,\"price\":0,\"purchaseDate\":null,\"readingState\":0,\"comment\":null,\"rank\":null,\"genre\":null}]"));
+        verify(target.mapper).writeValue(writer, books);
 	}
 }

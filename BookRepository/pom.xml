@@ -52,6 +52,16 @@
         <artifactId>lib</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </dependency>
+      <dependency>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.5.1</version>
+      </dependency>
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>1.2.9</version>
+      </dependency>
   </dependencies>
   <reporting>
       <plugins>
@@ -64,5 +74,16 @@
   </reporting>
   <build>
     <finalName>bookrepository</finalName>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>2.5.1</version>
+              <configuration>
+                  <target>1.7</target>
+                  <source>1.7</source>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>
