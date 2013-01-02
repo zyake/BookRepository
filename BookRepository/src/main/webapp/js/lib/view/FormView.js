@@ -19,6 +19,7 @@ var FormView = Backbone.View.extend({
            var sendSuccessed = me.model.send(me.el);
            if ( sendSuccessed ) {
                 me.disableInput();
+                event.preventDefault();
             }
         });
    },

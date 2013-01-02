@@ -33,8 +33,8 @@ $(function() {
 	 }
 
       var formModel = new FormModel({
-    	    submitUrl: "/bookrepository/api/register",
-    	    el: registerForm
+        submitUrl: "/bookrepository/api/register",
+        el: registerForm
       });
       var registerForm = new FormView({
         el: document.getElementById("registerForm"),
