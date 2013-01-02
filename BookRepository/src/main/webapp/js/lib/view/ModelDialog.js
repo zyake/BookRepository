@@ -1,23 +1,12 @@
- var ModelDialog = Backbone.View.extend({
+ var ModelDialog = Dialog.extend({
 
 	 initialize:  function(arg) {
+	    Dialog.prototype.initialize.apply(this, arg);
 		this.dialogTemplate = _.template(arg.dialogTemplate);
 	 },
 
-	 render: function(model) {
-		 var cover = document.createElement("DIV");
-		 cover.className = "cover";
-
-		 var dialog = document.createElement("DIV");
-		 dialog.className = "dialog";
-		 dialog.innerHTML = this.dialogTemplate(model);
-		 var closeButton = dialog.querySelector(".close");
-		 closeButton.addEventListener("click", function() {
-			 document.body.removeChild(dialog);
-			 document.body.removeChild(cover);
-		  });
-
-		 document.body.appendChild(cover);
-		 document.body.appendChild(dialog);
+	 retrieveContent: function(arg) {
+		 var content = this.dialogTemplate(arg.model);
+         this.dialog.innerHTML = content;
 	 }
  });

@@ -40,6 +40,7 @@ public class DefaultRegisterServie implements RegisterService {
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void registerBook(Book newBook) {
         try {
             repository.insertBook(newBook);
