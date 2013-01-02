@@ -7,7 +7,7 @@ import javax.annotation.ManagedBean;
 import javax.enterprise.inject.Produces;
 
 @ManagedBean
-public class MultiPartMessageParserFactory {
+public class MultipartMessageParserFactory {
 
     @Produces
     public MultipartMessageParser createRegisterMessageParser() {

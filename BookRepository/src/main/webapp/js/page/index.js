@@ -1,8 +1,3 @@
-/**
- * imports backbone.js;
- * imports jquery.js;
- * imports underscore.js;
- */
 $(function() {
 	 var books = new BookCollection();
 
@@ -17,42 +12,33 @@ $(function() {
 		 collectionUrl: "/bookrepository/api/books",
 		 collection: books
 	 });
-
 	 var pagerView = new PagerView({
 		 model: pagerModel,
 		 el: document.getElementById("pager")
 	});
 
-	 modelDialog = new ModelDialog({
+	 var modelDialog = new ModelDialog({
+	     el: document.body,
 		 dialogTemplate: document.getElementById("bookTemplate").innerHTML
 	 });
-
 	 window.showModel = function(no) {
 		 var foundBooks = books.where({ no: no });
-		 modelDialog.render(foundBooks[0].toJSON());
+		 modelDialog.show({ model: foundBooks[0].toJSON() });
 	 }
 
-      var formModel = new FormModel({
-        submitUrl: "/bookrepository/api/register",
-        el: registerForm
+    var registerDialog = new RegisterDialog({
+        el: document.body,
+        registerFormTemplate: document.getElementById("registerTemplate").innerHTML,
+        model: new FormModel({ submitUrl: "/bookrepository/api/register" })
       });
-      var registerForm = new FormView({
-        el: document.getElementById("registerForm"),
-        model: formModel
-      });
-
-    var registerDialog = document.getElementById("registerDialog");
-    window.closeRegisterDialog = function() {
-        registerDialog.style.display = "none";
-    }
     window.showRegisterDialog = function() {
-        registerDialog.style.display = "block";
-        formModel.fetch({ url: "/bookrepository/api/register" });
+        registerDialog.show();
     }
+    registerDialog.model.on("submit.success", function() { alert("register success!"); });
 
 	 var errorView = new ErrorView({
 		 el: document.getElementById("error"),
-		 models: [pagerView.model, books, formModel]
+		 models: [pagerView.model, books, registerDialog.model]
 	 });
 
 	 pagerModel.refresh();
