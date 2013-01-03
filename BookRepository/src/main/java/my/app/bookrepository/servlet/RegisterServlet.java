@@ -2,7 +2,7 @@ package my.app.bookrepository.servlet;
 
 
 import my.app.bookrepository.domain.Selection;
-import my.app.bookrepository.service.RegisterService;
+import my.app.bookrepository.service.BookService;
 import my.app.bookrepository.util.StringUtils;
 import my.app.bookrepository.domain.Book;
 import my.lib.net.mime.MultipartMessage;
@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
     ObjectMapper mapper;
 
     @EJB
-    RegisterService service;
+    BookService service;
 
     @Inject
     MultipartMessageParser messageParser;

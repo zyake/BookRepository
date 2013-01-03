@@ -3,6 +3,7 @@ package my.app.bookrepository.service;
 import java.util.List;
 
 import my.app.bookrepository.domain.Book;
+import my.app.bookrepository.domain.Selection;
 
 
 public interface BookService {
@@ -16,6 +17,7 @@ public interface BookService {
 	 */
 	List<Book> listBooks(int index, int size);
 
+    List<Selection> listSelections();
 
-	void insertBook(Book newBook);
+    void registerBook(Book newBook);
 }

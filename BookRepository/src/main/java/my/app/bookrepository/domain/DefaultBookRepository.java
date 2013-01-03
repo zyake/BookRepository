@@ -1,20 +1,16 @@
-package my.app.bookrepository.mappers;
+package my.app.bookrepository.domain;
 
-import my.app.bookrepository.domain.Book;
-import my.app.bookrepository.domain.BookRepository;
+import my.app.bookrepository.mappers.BookMapper;
 
+import javax.annotation.ManagedBean;
+import javax.inject.Inject;
 import java.util.List;
 
+@ManagedBean
 public class DefaultBookRepository implements BookRepository {
 
-    AutoCloseable session;
-
+    @Inject
     BookMapper mapper;
-
-    public DefaultBookRepository(AutoCloseable session, BookMapper mapper) {
-        this.session = session;
-        this.mapper = mapper;
-    }
 
     @Override
     public List<Book> listBooks(int from, int to) {
@@ -44,13 +40,5 @@ public class DefaultBookRepository implements BookRepository {
     @Override
     public List<String> listGenres() {
         return mapper.listGenres();
-    }
-
-    public void close()  {
-        try {
-            session.close();
-        } catch (Exception e) {
-            throw new MapperException(e);
-        }
     }
 }

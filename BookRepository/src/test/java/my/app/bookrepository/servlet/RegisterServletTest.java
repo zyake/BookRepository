@@ -1,7 +1,7 @@
 package my.app.bookrepository.servlet;
 
 import my.app.bookrepository.domain.Selection;
-import my.app.bookrepository.service.RegisterService;
+import my.app.bookrepository.service.BookService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 
@@ -38,7 +38,7 @@ public class RegisterServletTest {
                 new Selection("test1", Arrays.asList("A", "B", "C")),
                 new Selection("test2", Arrays.asList("D", "E", "F"))
          );
-        RegisterService service = mock(RegisterService.class);
+        BookService service = mock(BookService.class);
         when(service.listSelections()).thenReturn(selections);
 
         RegisterServlet target = new RegisterServlet();

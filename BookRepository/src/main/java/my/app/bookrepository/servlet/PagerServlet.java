@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import my.app.bookrepository.domain.Pager;
-import my.app.bookrepository.service.PageService;
+import my.app.bookrepository.service.PagerService;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -19,7 +19,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class PagerServlet extends HttpServlet {
 
 	@EJB
-	PageService service;
+    PagerService service;
 
 	@Inject
 	ObjectMapper mapper;

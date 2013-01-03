@@ -19,7 +19,7 @@ public class DefaultPageServiceTest {
         BookRepository repository = mock(BookRepository.class);
 		stub(repository.countBooks()).toReturn(10);
 
-		DefaultPageService target = new DefaultPageService();
+		DefaultPagerService target = new DefaultPagerService();
 		target.repository = repository;
 
 		// test
@@ -35,7 +35,7 @@ public class DefaultPageServiceTest {
         BookRepository repository = mock(BookRepository.class);
 		stub(repository.countBooks()).toReturn(1);
 
-		DefaultPageService target = new DefaultPageService();
+		DefaultPagerService target = new DefaultPagerService();
 		target.repository = repository;
 
 		// test
