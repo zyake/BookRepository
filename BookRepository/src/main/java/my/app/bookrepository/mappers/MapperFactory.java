@@ -30,8 +30,6 @@ import java.util.logging.Logger;
 @RequestScoped
 public class MapperFactory {
 
-    private static final Logger LOG = Logger.getLogger(MapperFactory.class.getName());
-
     private static final Object SESSION_FACTORY_LOCK = new Object();
 
     /**
