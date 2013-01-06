@@ -1,4 +1,4 @@
- var RegisterDialog = Dialog.extend({
+ var SubmitDialog = Dialog.extend({
 
     initialize: function(arg) {
         Dialog.prototype.initialize.apply(this, arg);

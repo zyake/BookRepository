@@ -1,3 +1,22 @@
+/**
+ * コンポーネントを一元的に管理するためのリポジトリ。
+ *
+ * コンポーネントはファクトリ単位で登録し、コンポーネントが
+ * 初めて取得されるタイミングで生成され、以後キャッシュされる。
+ * そのため、コンポーネントのモデルとしてはシングルトンのみをサポートする。
+ *
+ * ファクトリ内から他のコンポーネントを参照したい場合は、
+ * ファクトリ内のthisスコープでgetメソッドを呼ぶことで、
+ * 連鎖的に依存関係を解決することができる。
+ *
+ * ■例
+ * var repository = new ComponentRepository();
+ * repository.addFactory("id", function() { return "ID-1" });
+ * repository.addFactory("defaultName", function() { return this.get("id") + "-001" });
+ *
+ * // ID1-001が表示される
+ * alert(repository.get("defaultName"));
+ */
 function ComponentRepository() {
 }
 

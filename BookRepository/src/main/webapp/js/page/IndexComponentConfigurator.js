@@ -47,7 +47,7 @@ IndexComponentConfigurator.prototype.configure = function() {
     });
 
     compRepository.addFactory("registerDialog", function(arg) {
-        var registerDialog = new RegisterDialog({
+        var registerDialog = new SubmitDialog({
             el: document.body,
             registerFormTemplate: arg.resource,
             model: new FormModel({ submitUrl: URL.REGISTER_BOOK })
