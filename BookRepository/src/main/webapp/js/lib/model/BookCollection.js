@@ -13,4 +13,4 @@ var BookModel = Backbone.Model.extend({
 	}
 });
 
-var BookCollection = Backbone.Collection.extend({model: BookModel});
+var BookCollection = Backbone.Collection.extend({ model: BookModel });

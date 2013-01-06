@@ -21,6 +21,7 @@ var FormModel = Backbone.Model.extend({
         xhr.open("POST", this.submitUrl);
         var formData = new FormData(form);
         xhr.send(formData);
+        
         return true;
     },
 

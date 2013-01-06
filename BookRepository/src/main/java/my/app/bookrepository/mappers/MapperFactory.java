@@ -26,8 +26,8 @@ import java.util.logging.Logger;
  * 新しいセッションを生成する。そのため、リクエストが終了するタイミングで
  * クローズする必要があるので、スコープを変えてはならない。
  */
-@ManagedBean
 @RequestScoped
+@ManagedBean
 public class MapperFactory {
 
     private static final Object SESSION_FACTORY_LOCK = new Object();

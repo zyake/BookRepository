@@ -4,7 +4,11 @@
 		this.models = args.models;
 		var me = this;
 		this.models.forEach(function(model) {
-			 me.listenTo(model, "error", me.handle); });
+			 me.addErrorListener(model); });
+ 	},
+
+ 	addErrorListener: function(model) {
+        this.listenTo(model, "error", this.handle);
  	},
 
  	handle: function(model, xhr) {

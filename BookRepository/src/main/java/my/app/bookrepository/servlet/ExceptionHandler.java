@@ -47,7 +47,6 @@ public class ExceptionHandler implements Filter {
 			}
 
 			configResponse(response);
-
 			ErrorResponse errorResponse = createErrorResponse(request, ex);
 			mapper.writeValue(response.getWriter(), errorResponse);
 		}
