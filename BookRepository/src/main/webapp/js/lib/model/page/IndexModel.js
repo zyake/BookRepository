@@ -2,7 +2,7 @@
 
     URL: {
          SHOW_BOOK_TEMPLATE: "resource/ShowBook.template",
-         REGISTER_BOOK_TEMPLATE: "resource/RegisterBook.template",
+         REGISTER_BOOK_TEMPLATE: "resource/SubmitBook.template",
          TABLE_ROW_TEMPLATE: "resource/TableRow.template"
     },
 
@@ -40,7 +40,8 @@
         this.resourceManager.fetch(
              this.URL.REGISTER_BOOK_TEMPLATE,
              function(url, resource) {
-                 var registerDialog = me.repository.get("registerDialog", { resource: resource });
+                 var registerForm = _.template(resource)({ title: "Register" });
+                 var registerDialog = me.repository.get("registerDialog", { resource: registerForm });
                  registerDialog.show();
              },
              function(url, xhr) {
