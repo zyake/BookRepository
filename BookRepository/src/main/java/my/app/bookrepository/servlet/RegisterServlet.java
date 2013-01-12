@@ -1,10 +1,9 @@
 package my.app.bookrepository.servlet;
 
 
-import my.app.bookrepository.domain.Selection;
+import my.app.bookrepository.domain.Book;
 import my.app.bookrepository.service.BookService;
 import my.app.bookrepository.util.StringUtils;
-import my.app.bookrepository.domain.Book;
 import my.lib.net.mime.MultipartMessage;
 import my.lib.net.mime.MultipartMessageParser;
 import my.lib.net.mime.ofm.MultipartMessageMapper;
@@ -19,9 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @WebServlet("/api/register")
 public class RegisterServlet extends HttpServlet {
@@ -38,14 +34,6 @@ public class RegisterServlet extends HttpServlet {
     @Inject
     @Named("register")
     MultipartMessageMapper messageMapper;
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Selection> selections = service.listSelections();
-        Map<String, List<Selection>> map = new HashMap<>();
-        map.put("selections", selections);
-        mapper.writeValue(resp.getWriter(), map);
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

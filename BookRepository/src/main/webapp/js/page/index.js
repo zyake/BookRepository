@@ -8,4 +8,8 @@ $(function() {
     window.showRegisterDialog = function() {
         indexModel.showRegisterDialog();
     }
+
+    window.showModificationDialog = function(no) {
+        indexModel.showModificationDialog(no);
+    }
 });

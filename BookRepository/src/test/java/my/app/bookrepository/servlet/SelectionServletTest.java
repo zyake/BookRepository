@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class RegisterServletTest {
+public class SelectionServletTest {
 
     @Test
     public void testDoGet_normal() throws IOException, ServletException {
@@ -41,7 +41,7 @@ public class RegisterServletTest {
         BookService service = mock(BookService.class);
         when(service.listSelections()).thenReturn(selections);
 
-        RegisterServlet target = new RegisterServlet();
+        SelectionServlet target = new SelectionServlet();
         target.service = service;
         target.mapper = new ObjectMapper();
 

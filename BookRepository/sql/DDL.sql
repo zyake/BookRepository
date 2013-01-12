@@ -12,6 +12,7 @@ CREATE TABLE Genres(
 
 CREATE TABLE Books(
 	No INT PRIMARY KEY AUTO_INCREMENT,
+	/* 書籍情報更新時のリビジョン番号。更新処理が実行されるたびにインクリメントされる。 */
 	Revision INT NOT NULL,
 	Name VARCHAR(50) NOT NULL,
 	Url VARCHAR(200) NOT NULL,

@@ -21,7 +21,7 @@
         });
      },
 
-     showModel: function(no) {
+    showModel: function(no) {
          var me = this;
          this.resourceManager.fetch(
              this.URL.SHOW_BOOK_TEMPLATE,
@@ -33,9 +33,9 @@
              function(url, xhr) {
                  me.repository.get("errorView").handle(null, xhr);
          });
-     },
+    },
 
-     showRegisterDialog: function() {
+    showRegisterDialog: function() {
         var me = this;
         this.resourceManager.fetch(
              this.URL.REGISTER_BOOK_TEMPLATE,
@@ -47,5 +47,26 @@
              function(url, xhr) {
                  me.repository.get("errorView").handle(null, xhr);
          });
-     }
+    },
+
+    showModificationDialog: function(no) {
+         var me = this;
+         this.resourceManager.fetch(
+              this.URL.REGISTER_BOOK_TEMPLATE,
+              function(url, resource) {
+                  var updateForm = _.template(resource)({ title: "Update" });
+
+                  var targetModel = me.repository.get("bookCollection").where({ no: no })[0];
+                  var targetJson = targetModel.toJSON();
+
+                  var updateDialog = me.repository.get("updateDialog", { resource: updateForm });
+                  var targetForm = updateDialog.formView.el
+
+                  updateDialog.model.on("sync", function() { FormUtils.get().mapToForm(targetJson, targetForm); });
+                  updateDialog.show();
+              },
+              function(url, xhr) {
+                  me.repository.get("errorView").handle(null, xhr);
+          });
+    }
  });

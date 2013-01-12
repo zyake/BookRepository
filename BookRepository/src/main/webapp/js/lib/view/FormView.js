@@ -51,7 +51,7 @@ var FormView = Backbone.View.extend({
    refreshOptions: function(selection, options) {
         selection.innerHTML = "";
         for ( var i = 0 ; i < options.length ; i ++ ) {
-            var option = new Option(options[i]);
+            var option = new Option(options[i], options[i]);
             selection.appendChild(option);
         }
         selection.selectedIndex = 0;

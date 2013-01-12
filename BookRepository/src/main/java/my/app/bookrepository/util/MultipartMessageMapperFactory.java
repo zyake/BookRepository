@@ -26,13 +26,13 @@ public class MultipartMessageMapperFactory {
         Collections.addAll(entityConverters,
                 new TextEntityConverter(new FormDataNameAcceptor("name")),
                 new TextEntityConverter(new FormDataNameAcceptor("url")),
-                new TextEntityConverter(new FormDataNameAcceptor("publishers")),
+                new TextEntityConverter(new FormDataNameAcceptor("publisher")),
                 new IntegerEntityConvereter(new FormDataNameAcceptor("price")),
                 new ThreadSafeDateEntityConverter(new FormDataNameAcceptor("purchaseDate"), "yyyy-MM-dd"),
-                new IntegerEntityConvereter(new FormDataNameAcceptor("readingStates")),
+                new IntegerEntityConvereter(new FormDataNameAcceptor("readingState")),
                 new TextEntityConverter(new FormDataNameAcceptor("comment")),
-                new TextEntityConverter(new FormDataNameAcceptor("ranks")),
-                new TextEntityConverter(new FormDataNameAcceptor("genres"))
+                new TextEntityConverter(new FormDataNameAcceptor("rank")),
+                new TextEntityConverter(new FormDataNameAcceptor("genre"))
         );
 
         MultipartMessageMapper mapper = new DefaultMultipartMessageMapper(entityConverters, new FormDataFieldInjector());

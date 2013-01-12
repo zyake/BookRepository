@@ -8,7 +8,7 @@
     },
 
     retrieveContent: function(arg) {
-        this.model.fetch({url: this.model.get("submitUrl") });
+        this.model.fetch({url: this.model.get("url") });
     },
 
     createFormView: function(model, el) {

@@ -36,9 +36,9 @@ public class DefaultBookService implements BookService {
 
         List<Selection> selections = new ArrayList<>();
         Collections.addAll(selections,
-                new Selection("genres", genres),
-                new Selection("publishers", publishers),
-                new Selection("ranks", ranks)
+                new Selection("genre", genres),
+                new Selection("publisher", publishers),
+                new Selection("rank", ranks)
         );
 
         return selections;
