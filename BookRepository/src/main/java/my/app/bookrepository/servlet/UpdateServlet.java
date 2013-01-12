@@ -1,6 +1,5 @@
 package my.app.bookrepository.servlet;
 
-
 import my.app.bookrepository.domain.Book;
 import my.app.bookrepository.service.BookService;
 import my.app.bookrepository.util.StringUtils;
@@ -18,11 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/api/register")
-public class RegisterServlet extends HttpServlet {
-
-    @Inject
-    ObjectMapper mapper;
+@WebServlet("/api/update")
+public class UpdateServlet extends HttpServlet {
 
     @EJB
     BookService service;
@@ -33,6 +29,9 @@ public class RegisterServlet extends HttpServlet {
     @Inject
     MultipartMessageMapper messageMapper;
 
+    @Inject
+    ObjectMapper mapper;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String msgBody = StringUtils.readFully(req.getReader());
@@ -40,6 +39,6 @@ public class RegisterServlet extends HttpServlet {
 
         Book book = new Book();
         messageMapper.mapToObject(multipartMessage, book);
-        service.registerBook(book);
+        service.update(book);
     }
 }

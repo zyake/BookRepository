@@ -13,12 +13,12 @@ import my.app.bookrepository.domain.*;
 import my.app.bookrepository.mappers.BookMapper;
 
 @Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class DefaultBookService implements BookService {
 
 	@Inject
     BookRepository repository;
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Book> listBooks(int index, int size) {
         Pager page = new Pager(index, size);
         PageRange range = page.getRange();
@@ -28,7 +28,6 @@ public class DefaultBookService implements BookService {
 	}
 
     @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public List<Selection> listSelections() {
         List<String> genres = repository.listGenres();
         List<String> publishers = repository.listPublishers();
@@ -45,8 +44,12 @@ public class DefaultBookService implements BookService {
     }
 
     @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void registerBook(Book newBook) {
         repository.insertBook(newBook);
+    }
+
+    @Override
+    public void update(Book book) {
+        repository.updateBook(book);
     }
 }

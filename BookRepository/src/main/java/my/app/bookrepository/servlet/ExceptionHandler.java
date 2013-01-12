@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.EJBException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -58,17 +59,22 @@ public class ExceptionHandler implements Filter {
 		ErrorResponse errorResponse = new ErrorResponse(httpRequest.getRequestURI(), message);
 
 		return errorResponse;
-	}
+    }
 
-	protected HttpServletResponse configResponse(ServletResponse response) {
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		httpResponse.reset();
-		httpResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    protected HttpServletResponse configResponse(ServletResponse response) {
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        httpResponse.reset();
+        httpResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
 		return httpResponse;
 	}
 
 	protected String getErrorMessage(Exception ex) {
+        boolean useActualException = ex instanceof EJBException;
+        if ( useActualException ) {
+            ex = ((EJBException) ex).getCausedByException();
+        }
+
 		String message = ex.getMessage();
 
 		boolean useSpecificMessage = message == null && MESSAGE_MAP.containsKey(ex.getClass());

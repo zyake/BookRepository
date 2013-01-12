@@ -6,16 +6,20 @@ import my.app.bookrepository.domain.Book;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface BookMapper {
 
-	@Select("SELECT no, name, url, publisher, price, purchasedate, readingstate, comment, rank, genre FROM Books WHERE no >= #{0} AND #{1} >= no")
+	@Select("SELECT no, name, url, publisher, price, purchasedate, readingstate, comment, rank, genre, revision FROM Books WHERE no >= #{0} AND #{1} >= no")
 	List<Book> listBooks(int from, int to);
 
-	@Insert("INSERT INTO Books(Name, Url, Publisher, Price, PurchaseDate, ReadingState, Comment, Rank, Genre) VALUES(#{name}, #{url}, #{publisher}, #{price}, #{purchaseDate}, #{readingState}, #{comment}, #{ranks}, #{genre})")
+	@Insert("INSERT INTO Books(Name, Url, Publisher, Price, PurchaseDate, ReadingState, Comment, Rank, Genre, Revision) VALUES(#{name}, #{url}, #{publisher}, #{price}, #{purchaseDate}, #{readingState}, #{comment}, #{rank}, #{genre}, 0)")
 	void insertBook(Book newBook);
 
-    @Select("SELECT COUNT(no) FROM Books")
+    @Update("UPDATE Books SET Name = #{name}, Url = #{url}, Publisher = #{publisher}, Price = #{price}, PurchaseDate = #{purchaseDate}, ReadingState = #{readingState}, Comment = #{comment}, Rank = #{rank}, Genre = #{genre}, Revision = Revision + 1 WHERE No = #{no} AND Revision = #{revision}")
+    int updateBook(Book book);
+
+    @Select("SELECT COUNT(1) FROM Books")
     int countBooks();
 
     @Select("SELECT Name FROM Publishers ORDER BY Name")

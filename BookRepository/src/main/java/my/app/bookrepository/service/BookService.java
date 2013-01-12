@@ -20,4 +20,6 @@ public interface BookService {
     List<Selection> listSelections();
 
     void registerBook(Book newBook);
+
+    void update(Book book);
 }

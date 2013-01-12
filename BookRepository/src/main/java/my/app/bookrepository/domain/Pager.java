@@ -13,24 +13,24 @@ public class Pager {
 	}
 
 	public Pager(int currentIndex, int maxPerPageSize, int serverItemSize) {
+        boolean invalidServerItemSize = serverItemSize < 0;
+        if ( invalidServerItemSize ) {
+            throw new DomainException("server item size must be greater than  or equal to 0: server item size=" + serverItemSize);
+        }
+
+        boolean invalidCurrentIndex = currentIndex <= 0;
+        if ( invalidCurrentIndex ) {
+            throw new DomainException("current index must be greater than 0: current index=" + currentIndex);
+        }
+
+        boolean invalidMaxPerPageSize = maxPerPageSize < 0;
+        if ( invalidMaxPerPageSize ) {
+            throw new DomainException("max per page size must be greater than or equal to 0: max per page size=" + maxPerPageSize);
+        }
+
 		this.serverItemSize = serverItemSize;
 		this.currentIndex = currentIndex;
 		this.maxPerPageSize = maxPerPageSize;
-
-		boolean invalidServerItemSize = serverItemSize < 0;
-		if ( invalidServerItemSize ) {
-			throw new DomainException("server item size must be greater than  or equal to 0: server item size=" + serverItemSize);
-		}
-
-		boolean invalidCurrentIndex = currentIndex <= 0;
-		if ( invalidCurrentIndex ) {
-			throw new DomainException("current index must be greater than 0: current index=" + currentIndex);
-		}
-
-		boolean invalidMaxPerPageSize = maxPerPageSize < 0;
-		if ( invalidMaxPerPageSize ) {
-			throw new DomainException("max per page size must be greater than or equal to 0: max per page size=" + maxPerPageSize);
-		}
 	}
 
 	public int getServerItemSize() {

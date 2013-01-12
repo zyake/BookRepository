@@ -12,7 +12,7 @@
           <td>Book Name:</td><td><input name="name" type="text" required="required"/></td>
       </tr>
       <tr>
-          <td>Book Url:</td><td><input name="url" type="text" required="required" value=""/></td>
+          <td>Book Url:</td><td><input name="url" type="text" value=""/></td>
       </tr>
       <tr>
           <td>Publisher:</td><td><select name="publisher" required="required"/></td>
@@ -27,7 +27,7 @@
           <td>Reading State:</td><td><input name="readingState" type="number" min="0" value="0" required="required"/>%</td>
       </tr>
       <tr>
-          <td>Comment:</td><td><textarea name="comment" rows="10" cols="30" required="required"></textarea></td>
+          <td>Comment:</td><td><textarea name="comment" rows="10" cols="30"></textarea></td>
       </tr>
       <tr>
           <td>Rank:</td><td><select name="rank" required="required"/></td>
@@ -37,10 +37,10 @@
       </tr>
       </tbody>
   </table>
-  <input type="hidden" name="no"/>
-  <input class="submit" type="submit" value="register"/>
+  <input type="hidden" name="no" value="0"/>
+  <input type="hidden" name="revision" value="0"/>
+  <input class="submit" type="submit" value="submit"/>
   <input type="reset" value="reset"/>
  </form>
   <input class="close" type="button" value="close" onclick="closeRegisterDialog()"/>
-  <div class="success" style="font-weight: bold; color: blue;"></div>
 </div>

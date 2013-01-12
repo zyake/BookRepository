@@ -13,7 +13,7 @@ public class ObjectMapperFactory {
 	@Produces
 	public ObjectMapper crateObjectMapper() {
 		ObjectMapper mapper = new ObjectMapper();
-		mapper.getSerializationConfig().setDateFormat(new SimpleDateFormat("yyyy/MM/dd"));
+		mapper.getSerializationConfig().setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
 
 		return mapper;
 	}

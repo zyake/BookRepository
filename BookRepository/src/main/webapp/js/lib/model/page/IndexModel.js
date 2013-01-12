@@ -61,7 +61,6 @@
 
                   var updateDialog = me.repository.get("updateDialog", { resource: updateForm });
                   var targetForm = updateDialog.formView.el
-
                   updateDialog.model.on("sync", function() { FormUtils.get().mapToForm(targetJson, targetForm); });
                   updateDialog.show();
               },

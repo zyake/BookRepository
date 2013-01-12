@@ -1,41 +1,32 @@
 package my.app.bookrepository.util;
 
-import my.lib.net.mime.ofm.DefaultMultipartMessageMapper;
-import my.lib.net.mime.ofm.EntityConverter;
+import my.lib.net.mime.ofm.Converters;
+import my.lib.net.mime.ofm.Injectors;
+import my.lib.net.mime.ofm.MapperBuilder;
 import my.lib.net.mime.ofm.MultipartMessageMapper;
-import my.lib.net.mime.ofm.acceptors.FormDataNameAcceptor;
-import my.lib.net.mime.ofm.converters.IntegerEntityConvereter;
-import my.lib.net.mime.ofm.converters.TextEntityConverter;
-import my.lib.net.mime.ofm.converters.ThreadSafeDateEntityConverter;
-import my.lib.net.mime.ofm.injectors.FormDataFieldInjector;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.inject.Produces;
-import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @ManagedBean
 public class MultipartMessageMapperFactory {
 
     @Produces
-    @Named("register")
-    public MultipartMessageMapper createRegisterMessageMapper() {
-        List<EntityConverter> entityConverters = new ArrayList<>();
-        Collections.addAll(entityConverters,
-                new TextEntityConverter(new FormDataNameAcceptor("name")),
-                new TextEntityConverter(new FormDataNameAcceptor("url")),
-                new TextEntityConverter(new FormDataNameAcceptor("publisher")),
-                new IntegerEntityConvereter(new FormDataNameAcceptor("price")),
-                new ThreadSafeDateEntityConverter(new FormDataNameAcceptor("purchaseDate"), "yyyy-MM-dd"),
-                new IntegerEntityConvereter(new FormDataNameAcceptor("readingState")),
-                new TextEntityConverter(new FormDataNameAcceptor("comment")),
-                new TextEntityConverter(new FormDataNameAcceptor("rank")),
-                new TextEntityConverter(new FormDataNameAcceptor("genre"))
-        );
-
-        MultipartMessageMapper mapper = new DefaultMultipartMessageMapper(entityConverters, new FormDataFieldInjector());
+    public MultipartMessageMapper createMapper() {
+        MultipartMessageMapper mapper = new MapperBuilder()
+                .addHolder(Converters.INTEGER, "no")
+                .addHolder(Converters.INTEGER, "revision")
+                .addHolder(Converters.TEXT, "name")
+                .addHolder(Converters.TEXT, "url")
+                .addHolder(Converters.TEXT, "publisher")
+                .addHolder(Converters.INTEGER, "price")
+                .addDateHolder("purchaseDate", "yyyy-MM-dd")
+                .addHolder(Converters.INTEGER, "readingState")
+                .addHolder(Converters.TEXT, "comment")
+                .addHolder(Converters.TEXT, "rank")
+                .addHolder(Converters.TEXT, "genre")
+                .setInjector(Injectors.FIELD)
+                .build();
 
         return mapper;
     }

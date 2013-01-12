@@ -11,6 +11,8 @@ public interface BookRepository {
 
     int countBooks();
 
+    void updateBook(Book book);
+
     List<String> listPublishers();
 
     List<String> listRanks();

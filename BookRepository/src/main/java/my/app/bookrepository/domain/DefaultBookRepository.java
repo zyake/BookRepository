@@ -28,6 +28,15 @@ public class DefaultBookRepository implements BookRepository {
     }
 
     @Override
+    public void updateBook(Book book) {
+        int updateCount = mapper.updateBook(book);
+        boolean updateFailed = updateCount == 0;
+        if ( updateFailed ) {
+            throw new DomainException("update failed: " + book);
+        }
+    }
+
+    @Override
     public List<String> listPublishers() {
         return mapper.listPublishers();
     }
