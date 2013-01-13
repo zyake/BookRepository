@@ -63,9 +63,9 @@
           <version>1.2.9</version>
       </dependency>
       <dependency>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>jboss-maven-plugin</artifactId>
-          <version>1.5.0</version>
+          <groupId>org.jboss.as.plugins</groupId>
+          <artifactId>jboss-as-maven-plugin</artifactId>
+          <version>7.3.Final</version>
       </dependency>
   </dependencies>
   <reporting>
@@ -91,13 +91,15 @@
               </configuration>
           </plugin>
           <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>jboss-maven-plugin</artifactId>
-              <version>1.5.0</version>
+              <groupId>org.jboss.as.plugins</groupId>
+              <artifactId>jboss-as-maven-plugin</artifactId>
+              <version>7.3.Final</version>
               <configuration>
-                  <jbossHome>/opt/jboss/jboss-as-7.1.1.Final</jbossHome>
-                  <serverName>all</serverName>
-                  <fileName>target/bookrepository.war</fileName>
+                  <hostname>192.168.1.109</hostname>
+                  <username>root</username>
+                  <password>n1k1jkai</password>
+                  <port>9999</port>
+                  <filename>bookrepository.war</filename>
               </configuration>
           </plugin>
       </plugins>
