@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 public interface BookMapper {
 
-	@Select("SELECT no, name, url, publisher, price, purchasedate, readingstate, comment, rank, genre, revision FROM Books WHERE no >= #{0} AND #{1} >= no")
+	@Select("SELECT No, Name, Url, Publisher, Price, PurchaseDate, ReadingState, Comment, Rank, Genre, Revision FROM Books WHERE No >= #{0} AND #{1} >= No")
 	List<Book> listBooks(int from, int to);
 
 	@Insert("INSERT INTO Books(Name, Url, Publisher, Price, PurchaseDate, ReadingState, Comment, Rank, Genre, Revision) VALUES(#{name}, #{url}, #{publisher}, #{price}, #{purchaseDate}, #{readingState}, #{comment}, #{rank}, #{genre}, 0)")

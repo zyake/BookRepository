@@ -40,7 +40,7 @@ public class MapperFactory {
      */
     private volatile static SqlSessionFactory sessionFactory;
 
-	@Resource(lookup="jdbc/DataSource")
+	@Resource(lookup="java:/DataSource")
 	DataSource dataSource;
 
     SqlSession session;
