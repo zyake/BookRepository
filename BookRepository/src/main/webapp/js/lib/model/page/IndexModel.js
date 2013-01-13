@@ -10,6 +10,7 @@
         var me = this;
         this.resourceManager = ResourceManager.get();
         this.repository = new IndexComponentConfigurator().configure();
+        this.errorView = this.repository.get("errorView");
         this.resourceManager.fetch(this.URL.TABLE_ROW_TEMPLATE,
             function(url, resource) {
                  me.repository.get("collectionTable", { resource: resource });
@@ -42,6 +43,7 @@
              function(url, resource) {
                  var registerForm = _.template(resource)({ title: "Register" });
                  var registerDialog = me.repository.get("registerDialog", { resource: registerForm });
+                 registerDialog.model.on("submit.success", function() {});
                  registerDialog.show();
              },
              function(url, xhr) {
