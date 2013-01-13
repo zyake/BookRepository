@@ -90,7 +90,7 @@
     <orderEntry type="library" name="Maven: org.apache.maven:maven-repository-metadata:2.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-error-diagnostics:2.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-project:2.0.9" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact-manager:2.0.9" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact-manager:2.0.11" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-registry:2.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-plugin-descriptor:2.0.9" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-monitor:2.0.9" level="project" />
@@ -100,6 +100,16 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.codehaus.plexus:plexus-compiler-javac:1.9.1" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1" level="project" />
     <orderEntry type="library" name="Maven: classworlds:classworlds:1.1-alpha-2" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.mojo:jboss-maven-plugin:1.5.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.3" level="project" />
+    <orderEntry type="library" name="Maven: jboss:jboss-jmx:4.0.2" level="project" />
+    <orderEntry type="library" name="Maven: jboss:jnp-client:4.0.2" level="project" />
+    <orderEntry type="library" name="Maven: jboss:jboss-common:4.0.2" level="project" />
+    <orderEntry type="library" name="Maven: slide:webdavlib:2.0" level="project" />
+    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.6.2" level="project" />
+    <orderEntry type="library" name="Maven: jboss:jbosssx-client:3.2.3" level="project" />
+    <orderEntry type="library" name="Maven: velocity:velocity:1.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: velocity:velocity-dep:1.4" level="project" />
   </component>
 </module>
 
