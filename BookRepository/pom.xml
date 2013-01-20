@@ -97,7 +97,7 @@
               <configuration>
                   <hostname>192.168.1.109</hostname>
                   <username>root</username>
-                  <password>n1k1jkai</password>
+                  <password>password</password>
                   <port>9999</port>
                   <filename>bookrepository.war</filename>
               </configuration>
