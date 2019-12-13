@@ -22,6 +22,10 @@ public class DefaultPagerService implements PagerService {
             return new Pager(currentIndex, maxPerPageSize, newServerItemSize);
         }
 
+        if (currentIndex < 0) {
+            throw new RuntimeException("HOGE!");
+        }
+
         int maxIndex = Pager.getAvailableMaxIndex(maxPerPageSize, newServerItemSize);
         return new Pager(maxIndex, maxPerPageSize, newServerItemSize);
 	}
